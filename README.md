@@ -67,6 +67,9 @@ Things you may want to cover:
 - belongs_to :profiles
 
 ## productsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
 |title|string|null: false|
 |text|text|null: false|
 |category_id|references|foreign_key: true|
@@ -109,18 +112,27 @@ Things you may want to cover:
 - belongs_to :prefectures
 
 ## prefecturesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
 |name|string|null: false|
 
 ### Association
 - belongs_to :products
 
 ## categoriesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
 |name|string|null: false|
 
 ### Association
 - has_many :products
 
 ## sub_categoriesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
 |name|string|null: false|
 |category_id|references|foreign_key: true|
 
@@ -128,18 +140,27 @@ Things you may want to cover:
 - has_many :products
 
 ## sizesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
 |name|string|null: false|
 
 ### Association
 - has_many :products
 
 ## brandsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
 |name|string|null: false|
 
 ### Association
 - belongs_to :products
 
 ## product_imagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
 |image|string|null: false|
 |product_id|references|foreign_key: true|
 
