@@ -34,7 +34,7 @@ Things you may want to cover:
 |encrypted_password|string|null: false|
 
 ### Association
-- belongs_to :profiles
+- has_one :profile
 
 ## profilesテーブル
 
@@ -50,7 +50,7 @@ Things you may want to cover:
 |birthyear|integer|null: false|
 
 ### Association
-- belongs_to :profiles
+- belongs_to :user
 - has_many :creditcards
 - has_many :products
 - has_many :addresses
@@ -64,7 +64,7 @@ Things you may want to cover:
 |customer_id|string|null: false|
 
 ### Association
-- belongs_to :profiles
+- belongs_to :profile
 
 ## productsテーブル
 
@@ -77,18 +77,18 @@ Things you may want to cover:
 |size_id|references|foreign_key: true|
 |brand_id|references|foreign_key: true|
 |condition|string|null: false|
-|shipping_charge|integer|foreign_key: true|
+|shipping_charge|integer|null: false|
 |prefecture_id|references|foreign_key: true|
 |deliver_leadtime|integer|null: false|
 |price|integer|null: false|
 
 ### Association
-- belongs_to :profiles
-- belongs_to :prefectures
-- belongs_to :categories
-- belongs_to :sub_categories
-- belongs_to :sizes
-- has_many :brands
+- belongs_to :profile
+- belongs_to :prefecture
+- belongs_to :categorie
+- belongs_to :sub_categorie
+- belongs_to :size
+- belongs_to :brand
 - has_many :product_images
 
 ## addressesテーブル
@@ -108,8 +108,8 @@ Things you may want to cover:
 |phone_number|integer|
 
 ### Association
-- belongs_to :profiles
-- belongs_to :prefectures
+- belongs_to :profile
+- belongs_to :prefecture
 
 ## prefecturesテーブル
 
@@ -118,7 +118,8 @@ Things you may want to cover:
 |name|string|null: false|
 
 ### Association
-- belongs_to :products
+- has_many :products
+- has_many :addresses
 
 ## categoriesテーブル
 
@@ -128,6 +129,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :products
+- has_many :sub_categories
 
 ## sub_categoriesテーブル
 
@@ -138,6 +140,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :products
+- belongs_to :categories
 
 ## sizesテーブル
 
@@ -155,7 +158,7 @@ Things you may want to cover:
 |name|string|null: false|
 
 ### Association
-- belongs_to :products
+- has_many :products
 
 ## product_imagesテーブル
 
@@ -165,4 +168,4 @@ Things you may want to cover:
 |product_id|references|foreign_key: true|
 
 ### Association
-- belongs_to :products
+- belongs_to :product
