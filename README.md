@@ -35,6 +35,9 @@ Things you may want to cover:
 
 ### Association
 - has_one :profile
+- has_many :addresses
+- has_many :creditcards
+- has_many :products
 
 ## profilesテーブル
 
@@ -51,20 +54,17 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :user
-- has_many :creditcards
-- has_many :products
-- has_many :addresses
 
 ## creditcardsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|profile_id|references|foreign_key: true|
+|user_id|references|foreign_key: true|
 |card_id|string|null: false|
 |customer_id|string|null: false|
 
 ### Association
-- belongs_to :profile
+- belongs_to :user
 
 ## productsテーブル
 
@@ -72,21 +72,20 @@ Things you may want to cover:
 |------|----|-------|
 |title|string|null: false|
 |text|text|null: false|
+|user_id|references|foreign_key: true|
 |category_id|references|foreign_key: true|
-|sub_category_id|references|foreign_key: true|
 |size_id|references|foreign_key: true|
 |brand_id|references|foreign_key: true|
 |condition|string|null: false|
 |shipping_charge|integer|null: false|
-|prefecture_id|references|foreign_key: true|
+|prefecture_id|integer|null: false|
 |deliver_leadtime|integer|null: false|
 |price|integer|null: false|
 
 ### Association
-- belongs_to :profile
-- belongs_to :prefecture
+- belongs_to :user
+- belongs_to_active_hash :prefecture
 - belongs_to :category
-- belongs_to :sub_category
 - belongs_to :size
 - belongs_to :brand
 - has_many :product_images
@@ -95,52 +94,32 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|profile_id|references|foreign_key: true|
+|user_id|references|foreign_key: true|
 |post_family_name|string|null: false|
 |post_family_name_kana|string|null: false|
 |post_personal_name|string|null: false|
 |post_personal_name_kana|string|null: false|
 |postal_code|integer|null: false|
-|prefecture_id|references|foreign_key: true|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |address|string|null: false|
 |building|string|
 |phone_number|integer|
 
 ### Association
-- belongs_to :profile
-- belongs_to :prefecture
-
-## prefecturesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-
-### Association
-- has_many :products
-- has_many :addresses
+- belongs_to :user
+- belongs_to_active_hash :prefecture
 
 ## categoriesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
+|ancestry|string|
 
 ### Association
 - has_many :products
-- has_many :sub_categories
-
-## sub_categoriesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-|category_id|references|foreign_key: true|
-
-### Association
-- has_many :products
-- belongs_to :category
+- has_ancestry
 
 ## sizesテーブル
 
