@@ -85,8 +85,8 @@ Things you may want to cover:
 ### Association
 - belongs_to :profile
 - belongs_to :prefecture
-- belongs_to :categorie
-- belongs_to :sub_categorie
+- belongs_to :category
+- belongs_to :sub_category
 - belongs_to :size
 - belongs_to :brand
 - has_many :product_images
@@ -140,7 +140,7 @@ Things you may want to cover:
 
 ### Association
 - has_many :products
-- belongs_to :categories
+- belongs_to :category
 
 ## sizesテーブル
 
