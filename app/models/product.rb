@@ -1,7 +1,8 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
-  belongs_to :user
+  belongs_to :seller, class_name: "User"
+  belongs_to :buyer,  class_name: "User"
   belongs_to :category
   belongs_to :size
   belongs_to :brand
