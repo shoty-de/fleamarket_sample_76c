@@ -71,7 +71,8 @@ Things you may want to cover:
 |------|----|-------|
 |title|string|null: false|
 |text|text|null: false|
-|user_id|references|foreign_key: true|
+|seller_id|references|foreign_key: true|
+|buyer_id|references|foreign_key: true|
 |category_id|references|foreign_key: true|
 |size_id|references|foreign_key: true|
 |brand_id|references|foreign_key: true|
