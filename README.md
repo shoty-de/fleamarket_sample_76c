@@ -30,7 +30,6 @@ Things you may want to cover:
 |------|----|-------|
 |nickname|string|null: false|
 |email|string|null: false, unique: true|
-|password|string|null: false|
 |encrypted_password|string|null: false|
 
 ### Association
@@ -104,7 +103,7 @@ Things you may want to cover:
 |city|string|null: false|
 |address|string|null: false|
 |building|string|
-|phone_number|integer|
+|phone_number|string|
 
 ### Association
 - belongs_to :user
