@@ -46,9 +46,6 @@ class DeviseCreateAddresses < ActiveRecord::Migration[5.2]
 
       t.timestamps null: false
     end
-
-    add_index :addresses, :email,                unique: true
-    add_index :addresses, :reset_password_token, unique: true
     # add_index :addresses, :confirmation_token,   unique: true
     # add_index :addresses, :unlock_token,         unique: true
   end
