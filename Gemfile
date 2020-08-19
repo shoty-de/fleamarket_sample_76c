@@ -72,4 +72,7 @@ group :production do
   gem 'unicorn'
 end
 
+
+gem 'devise'
 gem 'active_hash'
+
