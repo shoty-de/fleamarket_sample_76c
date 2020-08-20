@@ -11,6 +11,8 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
+ActiveRecord::Schema.define(version: 2020_08_13_082214) do
+
 ActiveRecord::Schema.define(version: 2020_08_18_065854) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
