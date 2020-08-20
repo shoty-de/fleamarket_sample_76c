@@ -11,6 +11,15 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
+ActiveRecord::Schema.define(version: 2020_08_13_082025) do
+
+  create_table "creditcards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "card_id", null: false
+    t.string "customer_id", null: false
+
 ActiveRecord::Schema.define(version: 2020_08_13_082214) do
 
 ActiveRecord::Schema.define(version: 2020_08_18_065854) do
