@@ -10,19 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2020_08_20_093922) do
 
-ActiveRecord::Schema.define(version: 2020_08_13_082025) do
-
-  create_table "creditcards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "post_family_name", null: false
+    t.string "post_family_name_kana", null: false
+    t.string "post_personal_name", null: false
+    t.string "post_personal_name_kana", null: false
+    t.integer "postal_code", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", null: false
+    t.string "address", null: false
+    t.string "building"
+    t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.string "card_id", null: false
-    t.string "customer_id", null: false
+  end
 
-ActiveRecord::Schema.define(version: 2020_08_13_082214) do
-
-ActiveRecord::Schema.define(version: 2020_08_18_065854) do
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -32,7 +42,13 @@ ActiveRecord::Schema.define(version: 2020_08_18_065854) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
-ActiveRecord::Schema.define(version: 2020_08_17_085741) do
+  create_table "creditcards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "card_id", null: false
+    t.string "customer_id", null: false
+  end
 
   create_table "product_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "image", null: false
@@ -54,6 +70,23 @@ ActiveRecord::Schema.define(version: 2020_08_17_085741) do
     t.integer "size_id"
     t.integer "brand_id"
     t.integer "prefecture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "family_name", null: false
+    t.string "family_name_kana", null: false
+    t.string "first_name", null: false
+    t.string "first_name_kana", null: false
+    t.integer "birthday", null: false
+    t.integer "birthmonth", null: false
+    t.integer "birthyear", null: false
+  end
+
+  create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
