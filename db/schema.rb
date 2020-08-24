@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 2020_08_20_093922) do
     t.integer "user_id"
     t.string "post_family_name", null: false
     t.string "post_family_name_kana", null: false
-    t.string "post_personal_name", null: false
-    t.string "post_personal_name_kana", null: false
-    t.integer "postal_code", null: false
+    t.string "post_first_name", null: false
+    t.string "post_first_name_kana", null: false
+    t.string "postal_code", null: false
     t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "address", null: false
@@ -80,9 +80,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_093922) do
     t.string "family_name_kana", null: false
     t.string "first_name", null: false
     t.string "first_name_kana", null: false
-    t.integer "birthday", null: false
-    t.integer "birthmonth", null: false
-    t.integer "birthyear", null: false
+    t.date "birthday", null: false
   end
 
   create_table "sizes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
