@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Profile do
   describe "#create" do
-    it "family_name, family_name_kana, first_name, first_name_kana, birthday, birthmonth, birthyearが存在すれば登録できること" do
+    it "family_name, family_name_kana, first_name, first_name_kana, birthdayが存在すれば登録できること" do
       profile = build(:profile)
       expect(profile).to be_valid
     end
@@ -29,6 +29,12 @@ describe Profile do
       profile = build(:profile, first_name_kana: nil)
       profile.valid?
       expect(profile.errors[:first_name_kana]).to include("can't be blank")
+    end
+
+    it "birthdayがない場合は登録できないこと" do
+      profile = build(:profile, birthday: nil)
+      profile.valid?
+      expect(profile.errors[:birthday]).to include("can't be blank")
     end
 
     it "family_nameが全角文字でない場合は登録できないこと" do
