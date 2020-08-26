@@ -20,6 +20,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :new_profile
     end
 
+    def create_profile
+      @user = User.new(session["devise.regist_data"]["user"])
+      @profile = Profile.new(profile_params)
+
+      unless @profile.valid?
+        flash.now[:alert] = @profile.errors.full_messages
+        render :new_profile and return
+      end
+      session["devise.regist_data"].merge!(profile: @user.build_profile(@profile.attributes).attributes)
+      @address = @user.addresses.build
+      render :new_address
+    end
+
   # GET /resource/edit
   # def edit
   #   super
@@ -49,6 +62,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
+  end
+
+  def profile_params
+    params.require(:profile).permit(:family_name, :family_name_kana, :first_name, :first_name_kana, :birthday)
+  end
+
+  def address_params
+    params.require(:address).permit(:post_family_name, :post_family_name_kana, :post_first_name, :post_first_name_kana, :postal_code, :prefecture_id, :city, :address, :building, :phone_number)
   end
 
   # If you have extra params to permit, append them to the sanitizer.
