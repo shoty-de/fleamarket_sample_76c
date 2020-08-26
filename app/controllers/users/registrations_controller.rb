@@ -33,6 +33,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :new_address
     end
 
+    def create_address
+      @user = User.new(session["devise.regist_data"]["user"])
+      @profile = Profile.new(session["devise.regist_data"]["profile"])
+      @address = Address.new(address_params)
+      unless @address.valid?
+        flash.now[:alert] = @address.errors.full_messages
+        render :new_address and return
+      end
+
+      @user.save
+
+      @profile.user_id = @user.id
+      @profile.save
+
+      @address.user_id = @user.id
+      @address.save
+
+      session["devise.regist_data"].clear
+      sign_in(:user, @user)
+    end
   # GET /resource/edit
   # def edit
   #   super
