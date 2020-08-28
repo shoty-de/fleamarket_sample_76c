@@ -1,0 +1,14 @@
+//ログイン画面
+
+.single-container
+  .single-header
+  .single-main
+    .single-main__container
+      .single-main__container__login-title メールアドレスでログイン
+      .single-main__container__login-form
+        .single-main__container__login-form__address
+        %input.login-form__input{:autofocus => "autofocus",:name => "email", :placeholder => " メールアドレス", :type => "email", :value => ""}/
+        .single-main__container__login-form__password
+        %input.login-form__input{:autocomplete => "off",:name => "password", :placeholder => " パスワード", :type => "password", :value => ""}/
+        .single-main__container__login-form__action
+        %input.login-form__btn{:type => "submit", :name => "commit", :value => "ログイン",:data-disable-with => "ログイン"}

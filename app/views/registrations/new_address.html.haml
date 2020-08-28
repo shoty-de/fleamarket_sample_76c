@@ -1,0 +1,89 @@
+//会員情報入力(送付先住所)
+
+.single-container
+  .single-header
+    .search-pcheader
+      .headerInner
+        .mainHeader
+          .mainHeader__icon
+            %a{:href => "/"}
+            %img{:src => "/assets/logo-d3d78326971d78b06e3d6f0ba666d025a8ad681286b4d9e00e7dbe8673bcfd23.png"}/
+          .mainHeader__searchbox
+          
+            .mainHeader__searchbox__form
+              %form.form{"accept-charset" => "UTF-8", :action => "/items/search", :method => "get"}
+              %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+              %input#keyword.searchBox-input{:name => "keyword", :placeholder => "キーワードから探す", :type => "text"}/
+              .mainHeader__searchbox__btn
+                %button.search-btn{:name => "button", :type => "submit"}
+                %i.fas.fa-search
+                .mainHeader__searchbox__btn__icon
+                  %img{:src => "/assets/icon-search-60a83ada85216fe00789cd16065281694d9a08948275fef83683fadcf131d84d.svg"}/
+
+        .nav
+          .left-items
+            .left-items1 カテゴリ
+            .left-items2 ブランド
+          .right-items
+            .right-items1 
+            %a{:href => "#"} ログイン
+            .right-items2
+            %a{:href => "#"} 新規会員登録
+
+
+
+  .single-main
+    .single-main__container
+      .single-main__container__title
+        会員情報入力
+      .single-main__container__form
+        %form#new_sending_destination.new_sending_destination{"accept-charset" => "UTF-8", :action => "/sending_destinations", :method => "post"}
+        %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+        %input{:name => "authenticity_token", :type => "hidden", :value => "Ea5NXsqmPA+cRzSi9dutF3tvjqRupS3zZC98oqaAOiOaiyVBcZ0FZQYJtWu3pA4fr0LQllYPEaLtLYXnTS48PA=="}/
+        .sending-group
+          %label{:for => "sending_destination_送付先氏名"} 送付先氏名
+          %span.sending-group__require 必須
+          %br/
+          %input#sending_destination_destination_family_name.sending-group__input--left{:name => "sending_destination[destination_family_name]", :placeholder => " 例) 山田", :type => "text"}/
+          %input#sending_destination_destination_first_name.sending-group__input--right{:name => "sending_destination[destination_first_name]", :placeholder => " 例) 太郎", :type => "text"}/
+        .sending-group
+          %label{:for => "sending_destination_送付先氏名かな"} 送付先氏名カナ
+          %span.sending-group__require 必須
+          %br/
+          %input#sending_destination_destination_family_name_kana.sending-group__input--left{:name => "sending_destination[destination_family_name_kana]", :placeholder => " 例) ヤマダ", :type => "text"}/
+          %input#sending_destination_destination_first_name_kana.sending-group__input--right{:name => "sending_destination[destination_first_name_kana]", :placeholder => " 例) タロウ", :type => "text"}/
+        .sending-group
+          %label{:for => "sending_destination_郵便番号"} 郵便番号
+          %span.sending-group__require 必須
+          %br/
+          %input#sending_destination_post_code.sending-group__input{:autofocus => "autofocus", :name => "sending_destination[post_code]", :placeholder => " 例）XXX-XXXX", :type => "text"}/
+        .sending-group
+          %label{:for => "sending_destination_都道府県"} 都道府県
+          %span.sending-group__require 必須
+          %br/
+          %select#sending_destination_prefecture_code.sending-group__input{:name => "sending_destination[prefecture_code]"}
+            %option{:value => "   "}
+            %option{:value => "北海道"} 北海道
+            %option{:value => "沖縄県"} 沖縄県
+        .sending-group
+          %label{:for => "sending_destination_市町村"} 市区町村
+          %span.sending-group__require 必須
+          %br/
+          %input#sending_destination_city.sending-group__input{:autofocus => "autofocus", :name => "sending_destination[city]", :placeholder => " 例）XX市", :type => "text"}/
+        .sending-group
+          %label{:for => "sending_destination_番地"} 番地
+          %span.sending-group__require 必須
+          %br/
+          %input#sending_destination_house_number.sending-group__input{:autofocus => "autofocus", :name => "sending_destination[house_number]", :placeholder => " 例）XX丁目XX番地XX", :type => "text"}/
+        .sending-group
+          %label{:for => "sending_destination_建物名"} 建物名
+          %span.sending-group__optional 任意
+          %br/
+          %input#sending_destination_building_name.sending-group__input{:autofocus => "autofocus", :name => "sending_destination[building_name]", :placeholder => " 例）XXビル", :type => "text"}/
+        .sending-group
+          %label{:for => "sending_destination_電話番号"} 電話番号
+          %span.sending-group__optional 任意
+          %br/
+          %input#sending_destination_phone_number.sending-group__input{:autofocus => "autofocus", :name => "sending_destination[phone_number]", :placeholder => " 例）090-XXXX-XXXX", :type => "text"}/
+        .sending-group
+          %input.new-singup-btn{"data-disable-with" => "登録", :name => "commit", :type => "submit", :value => "登録"}/

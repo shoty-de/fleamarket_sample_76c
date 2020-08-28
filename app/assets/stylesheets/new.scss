@@ -1,0 +1,68 @@
+//ログイン画面
+
+.single-container{
+  background-color:whitesmoke
+}
+
+.single-header {
+  height: 128px;
+  border-bottom:1px solid #000000;
+  background-color: #fff;
+  color: #ffffff;
+  &__logo {
+    text-align: center;
+    font-size: 36px;
+    line-height: 90px;
+  }
+}
+
+.single-main {
+  margin: 0 auto;
+  background-color: whitesmoke;
+  height: 100vh;
+  width: 100vw;
+  &__container {
+    background-color: white;
+    width: 380px;
+    height: 400px;
+    margin: auto;
+    &__login-title{
+      margin-top: 50px;
+      height: 30px;
+      font-size: 20px;
+      text-align: center;
+      border-bottom: 1px whitesmoke solid;
+      padding: 15px;
+      font-weight: bolder;
+    }
+    &__login-form{
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      &__address{
+        padding: 20px;
+      }
+      &__password{
+        padding: 20px;
+      }
+      &__action{
+        padding: 20px;
+      }
+    }
+  }
+}
+
+.login-form__input {
+  width: 300px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.login-form__btn {
+  background: turquoise;
+  border: 1px solid turquoise;
+  color: black;
+  width: 300px;
+  height: 40px;
+  margin-top: 5px;
+}
