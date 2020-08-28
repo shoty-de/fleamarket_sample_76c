@@ -1,0 +1,12 @@
+%h1 Items#index
+%p Find me in app/views/items/index.html.erb
+- if user_signed_in?
+  %div
+    %span
+      %ul
+        %li
+          = link_to "ログアウト", destroy_user_session_path, method: :delete
+- else
+  %div
+    = link_to "ログイン", new_user_session_path, class: 'post'
+    = link_to "新規登録", new_user_registration_path, class: 'post'
