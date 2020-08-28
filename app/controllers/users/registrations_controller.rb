@@ -1,58 +1,54 @@
-# frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
 
-    def new
-      @user = User.new
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(sign_up_params)
+    unless @user.valid?
+      flash.now[:alert] = @user.errors.full_messages
+      render :new and return
+    end
+    session["devise.regist_data"] = {user: @user.attributes}
+    session["devise.regist_data"][:user]["password"] = params[:user][:password]
+    @profile = @user.build_profile
+    render :new_profile
+  end
+
+  def create_profile
+    @user = User.new(session["devise.regist_data"]["user"])
+    @profile = Profile.new(profile_params)
+
+    unless @profile.valid?
+      flash.now[:alert] = @profile.errors.full_messages
+      render :new_profile and return
+    end
+    session["devise.regist_data"].merge!(profile: @user.build_profile(@profile.attributes).attributes)
+    @address = @user.addresses.build
+    render :new_address
+  end
+
+  def create_address
+    @user = User.new(session["devise.regist_data"]["user"])
+    @profile = Profile.new(session["devise.regist_data"]["profile"])
+    @address = Address.new(address_params)
+    unless @address.valid?
+      flash.now[:alert] = @address.errors.full_messages
+      render :new_address and return
     end
 
-    def create
-      @user = User.new(sign_up_params)
-      unless @user.valid?
-        flash.now[:alert] = @user.errors.full_messages
-        render :new and return
-      end
-      session["devise.regist_data"] = {user: @user.attributes}
-      session["devise.regist_data"][:user]["password"] = params[:user][:password]
-      @profile = @user.build_profile
-      render :new_profile
-    end
+    @user.save
 
-    def create_profile
-      @user = User.new(session["devise.regist_data"]["user"])
-      @profile = Profile.new(profile_params)
+    @profile.user_id = @user.id
+    @profile.save
 
-      unless @profile.valid?
-        flash.now[:alert] = @profile.errors.full_messages
-        render :new_profile and return
-      end
-      session["devise.regist_data"].merge!(profile: @user.build_profile(@profile.attributes).attributes)
-      @address = @user.addresses.build
-      render :new_address
-    end
+    @address.user_id = @user.id
+    @address.save
 
-    def create_address
-      @user = User.new(session["devise.regist_data"]["user"])
-      @profile = Profile.new(session["devise.regist_data"]["profile"])
-      @address = Address.new(address_params)
-      unless @address.valid?
-        flash.now[:alert] = @address.errors.full_messages
-        render :new_address and return
-      end
-
-      @user.save
-
-      @profile.user_id = @user.id
-      @profile.save
-
-      @address.user_id = @user.id
-      @address.save
-
-      session["devise.regist_data"].clear
-      sign_in(:user, @user)
-    end
+    session["devise.regist_data"].clear
+    sign_in(:user, @user)
+  end
 
   protected
 
