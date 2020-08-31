@@ -1,2 +1,10 @@
 %h2 登録完了後のページ
 = link_to "トップへ戻る", root_path
+
+//遷移画面
+
+.single-container
+  .single-header
+  .single-main
+    .single-main__container
+      %input.btn{:type => "submit", :name => "commit", :value => "トップへ戻る",:data-disable-with => "トップへ戻る"}

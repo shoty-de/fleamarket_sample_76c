@@ -1,4 +1,4 @@
-%h2 Sign up
+-# %h2 Sign up
 = form_for(@user, url: user_registration_path) do |f|
   = render "devise/shared/error_messages", resource: @user
   .field
@@ -22,4 +22,36 @@
     = f.password_field :password_confirmation, autocomplete: "new-password"
   .actions
     = f.submit "Next"
-= render "devise/shared/links"
+-# = render "devise/shared/links"
+
+//新規登録画面
+
+.single-container
+  .single-header
+  .single-main
+    .single-main__container
+      .single-main__container__title
+        会員情報入力
+      .single-main__container__form
+        .single-main__container__form__group
+          %label{:for => "nickname"} ニックネーム
+          %span.form-require 必須
+          %br/
+          %input.input-default.has-error{"aria-describedby" => "nickname-error", "aria-invalid" => "true", :name => "nickname", :placeholder => " 例) 山田太郎", :type => "text", :value => ""}/
+        .single-main__container__form__group
+          %label{:for => "email"} メールアドレス
+          %span.form-require 必須
+          %br/
+          %input.input-default{:name => "email", :placeholder => " PC・携帯どちらでも可", :type => "email", :value => ""}/
+        .single-main__container__form__group
+          %label{:for => "password"} パスワード
+          %span.form-require 必須
+          %br/
+          %input.input-default{:name => "password", :placeholder => " 7文字以上の半角英数字", :type => "password"}/
+        .single-main__container__form__group
+          %label{:for => "password"} パスワード
+          %span.form-require 必須
+          %br/
+          %input.input-default{:name => "password", :placeholder => " 7文字以上の半角英数字", :type => "password"}/
+        .single-main__container__form__group
+          %button.btn-default.btn-red{:type => "submit"} 次へ進む
