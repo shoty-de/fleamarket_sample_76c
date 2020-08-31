@@ -17,8 +17,8 @@ $(function() {
   };
 
 
-  $(".field-input__select").on("change", function(){
-    var selected_categry = $(".field-input__select").val()
+  $("#product_category").on("change", function(){
+    var selected_categry = $("#product_category").val()
     if (selected_categry != "選択してください"){
     $.ajax({
       url: "get_children_category",
