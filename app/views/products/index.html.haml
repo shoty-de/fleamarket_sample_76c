@@ -19,10 +19,16 @@
         .headerLow__search-style.left
           = link_to 'ブランド', {}, class: 'linkStyle'             
       .headerLow__user
-        .herderLow__user-controll
-          = link_to 'ログイン', {}, class: 'linkStyle'              
-        .herderLow__user-controll
-          = link_to '新規会員登録', {}, class: 'linkStyle'                     
+        - if user_signed_in?
+          .herderLow__user-controll
+            = link_to 'ログアウト', destroy_user_session_path, class: 'linkStyle'              
+          .herderLow__user-controll
+            = link_to 'マイページ', {}, class: 'linkStyle'              
+        - else
+          .herderLow__user-controll
+            = link_to 'ログイン', new_user_session_path, class: 'linkStyle'              
+          .herderLow__user-controll
+            = link_to '新規会員登録', new_user_registration_path, class: 'linkStyle' 
 .main
   .firstVisual
     .firstVisual__content
