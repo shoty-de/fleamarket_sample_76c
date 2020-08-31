@@ -8,7 +8,8 @@ class Product < ApplicationRecord
   belongs_to :brand
   belongs_to_active_hash :prefecture
   has_many :product_images
-
+  accepts_nested_attributes_for :product_images, allow_destroy: true
+  
   validates :title,            presence: true
   validates :text,             presence: true
   validates :condition,        presence: true

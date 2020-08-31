@@ -6,8 +6,8 @@ class Address < ApplicationRecord
 
   validates :post_family_name,        presence: true
   validates :post_family_name_kana,   presence: true
-  validates :post_personal_name,      presence: true
-  validates :post_personal_name_kana, presence: true
+  validates :post_first_name,      presence: true
+  validates :post_first_name_kana, presence: true
   validates :postal_code,             presence: true
   validates :prefecture_id,           presence: true
   validates :city,                    presence: true

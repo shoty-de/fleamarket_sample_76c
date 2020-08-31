@@ -1,0 +1,103 @@
+.contents {
+  height: 100%;
+  width: 100%;
+  background-color: #eeeeee;
+  .header {
+    height: 130px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .input-area {
+    height: calc(100% - 240px);
+    width: 700px;
+    margin: 0 auto;
+    background-color: white;
+    .field {
+      padding: 30px;
+      border-bottom: solid 2px #eeeeee;
+      .field-category {
+        margin-bottom: 30px;
+        color: gray;
+        font-weight: bold;
+      }
+      .field-label {
+        margin-bottom: 20px;
+        &__name {
+          font-weight: bold;
+          font-size: 16px;
+        }
+        &__notice {
+          color: white;
+          padding: 2px 4px;
+          font-size: 12px;
+          font-weight: bold;
+          background-color: red;
+          border-radius: 2px;
+        }
+        #optional {
+          background-color: gray;
+
+        }
+      }
+      .field-input {
+        margin-bottom: 30px;
+        &__text-field {
+          height: 48px;
+          width: 608px;
+          padding: 0 16px 0 16px;
+          border: 1px solid #cccccc;
+        }
+        &__text-area {
+          height: 120px;
+          width: 608px;
+          padding: 16px;
+          border: 1px solid #cccccc;
+        }
+        &__select {
+          height: 48px;
+          width: 640px;
+          padding: 0 56px 0 16px;
+          border: 1px solid #cccccc;
+        }
+        &__number-field {
+          height: 48px;
+          width: 620px;
+          border: 1px solid #cccccc;
+          text-align: right;
+        }
+        #category {
+          margin-top: 10px;
+        }
+      }
+    }
+    .action {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &__btn {
+        height: 48px;
+        width: 300px;
+        background-color: #ea352d;
+        font-weight: bold;
+        color: white;
+        border-radius: 4px;
+        border: 1px solid transparent;
+      }
+    }
+  }
+
+  .footer {
+    height: 120px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+
