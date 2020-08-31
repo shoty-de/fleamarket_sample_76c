@@ -1,0 +1,33 @@
+//ログイン画面
+
+%h2 Log in
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true, autocomplete: "email"
+  .field
+    = f.label :password
+    %br/
+    = f.password_field :password, autocomplete: "current-password"
+  - if devise_mapping.rememberable?
+    .field
+      = f.check_box :remember_me
+      = f.label :remember_me
+  .actions
+    = f.submit "Log in"
+
+
+
+.single-container
+  .single-header
+  .single-main
+    .single-main__container
+      .single-main__container__login-title メールアドレスでログイン
+      .single-main__container__login-form
+        .single-main__container__login-form__address
+        %input.login-form__input{:autofocus => "autofocus",:name => "email", :placeholder => " メールアドレス", :type => "email", :value => ""}/
+        .single-main__container__login-form__password
+        %input.login-form__input{:autocomplete => "off",:name => "password", :placeholder => " パスワード", :type => "password", :value => ""}/
+        .single-main__container__login-form__action
+        %input.login-form__btn{:type => "submit", :name => "commit", :value => "ログイン",:data-disable-with => "ログイン"}

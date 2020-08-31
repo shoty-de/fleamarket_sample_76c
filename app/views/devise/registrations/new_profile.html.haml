@@ -1,5 +1,31 @@
 //会員情報登録(名前、生年月日)
 
+= form_for(@profile) do |f|
+  = render "devise/shared/error_messages", resource: @profile
+  .field
+    = f.label :family_name
+    %br/
+    = f.text_field :family_name
+  .field
+    = f.label :family_name_kana
+    %br/
+    = f.text_field :family_name_kana
+  .field
+    = f.label :first_name
+    %br/
+    = f.text_field :first_name
+  .field
+    = f.label :first_name_kana
+    %br/
+    = f.text_field :first_name_kana
+  .field
+    = f.label :birthday
+    %br/
+    = f.text_field :birthday
+  .actions
+    = f.submit "Next"
+
+
 .single-container
   .single-header
   .single-main
