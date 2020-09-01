@@ -1,80 +1,8 @@
-//会員情報入力
+//会員情報入力(名前、生年月日)
 
-.single-container{
-  background-color: whitesmoke;
-  padding: 0 0 220px;
-}
-
-.single-header {
-  height: 128px;
-  border-bottom:1px solid #000000;
-  background-color: #fff;
-  color: #ffffff;
-  &__logo {
-    text-align: center;
-    font-size: 36px;
-    line-height: 90px;
-  }
-}
-
-.single-main {
-  margin: 0 auto;
-  background-color: whitesmoke;
-  height: 100vh;
-  width: 100vw;
-  &__container {
-    background-color: white;
-    width: 600px;
-    margin: 50px auto;
-    &__title {
-      height: 30px;
-      font-size: 20px;
-      text-align: center;
-      border-bottom: 1px whitesmoke solid;
-      padding: 15px;
-      font-weight: bolder;
-    }
-    &__form{
-      background-color: white;
-      height: 100%;
-      padding:0px 160px;
-    }
-  }
-}
-
-.profile-group{
-  font-size: 16px;
-  margin-top: 20px;
-}
-
-.profile-group__input--left{
-  border-radius: 5px;
-  width: 130px;
-  height: 40px;
-}
-
-.profile-group__require {
-  background: turquoise;
-  padding: 2px 4px;
-  border-radius: 2px;
-  color: black;
-  font-size: 12px;
-  vertical-align: top;
-}
-
-.profile-group #profile_birth_day_1i, #profile_birth_day_2i, #profile_birth_day_3i{
+.profile_birthday #profile_birthday_1i, #profile_birthday_2i, #profile_birthday_3i {
   margin-bottom: 20px;
   border-radius: 5px;
-  width: 87px;
-  height: 40px;
-}
-
-.profile-btn {
-  background: turquoise;
-  border: 1px solid turquoise;
-  margin-bottom: 40px;
-  border-radius: 5px;
-  color: black;
-  width: 280px;
+  width: 90px;
   height: 40px;
 }
