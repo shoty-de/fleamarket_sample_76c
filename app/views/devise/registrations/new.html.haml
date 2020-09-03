@@ -20,7 +20,6 @@
         .input-default
           = f.label :パスワード
           %span.form-require 必須
-          - if @minimum_password_length
           %br/
           = f.password_field :password, autocomplete: "new-password", class: 'input', placeholder: ' 7文字以上の半角英数字'
         .input-default
