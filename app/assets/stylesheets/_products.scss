@@ -9,7 +9,7 @@
     align-items: center;
     justify-content: center;
   }
-  
+
   .input-area {
     height: calc(100% - 240px);
     width: 700px;
@@ -39,7 +39,7 @@
         }
         #optional {
           background-color: gray;
-          
+
         }
       }
       .image-box {
@@ -60,6 +60,7 @@
               -webkit-box-pack: center;
               position: relative;
               transition: all 0.5s ease-out 0s;
+            }
             .input-area-1{
               width: 491px;
               place-content: center;
