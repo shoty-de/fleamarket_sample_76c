@@ -6,9 +6,7 @@ class CreateProfiles < ActiveRecord::Migration[5.2]
       t.string :family_name_kana, null: false
       t.string :first_name, null: false
       t.string :first_name_kana, null: false
-      t.integer :birthday, null: false
-      t.integer :birthmonth, null: false
-      t.integer :birthyear, null: false
+      t.date   :birthday, null: false
     end
   end
 end

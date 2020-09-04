@@ -1,0 +1,31 @@
+//新規登録画面
+
+= form_for(@user, url: user_registration_path) do |f|
+  = render "devise/shared/error_messages", resource: @user
+  .main
+    .main__container
+      .main__container__title
+        会員情報入力
+      .main__container__form
+        .input-default
+          = f.label :ニックネーム
+          %span.form-require 必須
+          %br/
+          = f.text_field :nickname, class: 'input', placeholder: ' 例）匿名希望'
+        .input-default
+          = f.label :Eメール
+          %span.form-require 必須
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input', placeholder: ' PC・携帯どちらでも可'
+        .input-default
+          = f.label :パスワード
+          %span.form-require 必須
+          %br/
+          = f.password_field :password, autocomplete: "new-password", class: 'input', placeholder: ' 7文字以上の半角英数字'
+        .input-default
+          = f.label :パスワード
+          %span.form-require 必須
+          %br/
+          = f.password_field :password_confirmation, autocomplete: "new-password", class: 'input', placeholder: ' 7文字以上の半角英数字'
+        .btn-default
+          = f.submit "次へ進む", class: 'btn-next'

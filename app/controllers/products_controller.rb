@@ -10,12 +10,12 @@ class ProductsController < ApplicationController
     @products = Product.includes(:product_images).order('created_at DESC')
   end
 
-  
+
   def get_children_category
     @category_children = Category.find_by(name: "#{params[:parent_name]}").children
   end
 
-  def create    
+  def create
     @product = Product.new(product_params)
     if @product.save
       redirect_to root_path
