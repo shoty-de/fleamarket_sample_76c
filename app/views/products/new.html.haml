@@ -9,11 +9,13 @@
         .field-label
           = f.label '商品画像', class: 'field-label__name'
           %span.field-label__notice 必須
-        .field-input
-          = f.fields_for :product_images do |i|
-            .field-input__image
-              = i.file_field :image, type: 'file'
-              = image_tag 'material/icon/icon_camera.png', height: '24', width: '24'
+        .image-box
+          .image-box__container
+            = f.fields_for :images do |i|
+              .image-list
+                %label{for: "img-file", class: "input-area-0", id: "image"}
+                  = i.file_field :image, type: 'file', name: "item[images_attributes][][image_url]", value:"", style: "display:none", id:"img-file"
+                  = image_tag 'material/icon/icon_camera.png', height: '24', width: '24'
       .field
         .field-label
           = f.label '商品名', class: 'field-label__name'
@@ -69,8 +71,7 @@
           %span.field-label__notice 必須
         .field-input
           %span ¥
-          = f.number_field :price, placeholder: '0', class: 'field-input__number-field'
-      
+          = f.number_field :price, placeholder: '0', class: 'field-input__number-field'      
       .action
         = f.submit "出品する", class: 'action__btn'
   .footer

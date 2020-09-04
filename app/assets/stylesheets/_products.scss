@@ -39,7 +39,117 @@
         }
         #optional {
           background-color: gray;
-
+          
+        }
+      }
+      .image-box {
+        .image-box__container {
+          .image-list {
+            display: flex;
+            .input-area-0 {
+              width: 100%;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            .input-area-1{
+              width: 491px;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .input-area-2{
+              width: 363px;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .input-area-3{
+              width: 234px;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .input-area-4{
+              width: 106px;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .input-area-5{
+              width: 100%;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .item-image {
+              margin-right: 10px;
+              padding-top: 20px;
+              border: 1px dashed rgb(204, 204, 204);
+              &__content {
+                margin-bottom: 10px;
+              }
+              &__operetion {
+                &--delete {
+                  cursor: pointer;
+                  color: skyblue;
+                }
+              }
+            }
+          }
         }
       }
       .field-input {
