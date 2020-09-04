@@ -1,46 +1,59 @@
-%h2 Address
+// 住所情報入力
+
 = form_for(@address) do |f|
   = render "devise/shared/error_messages", resource: @address
-  .field
-    = f.label :post_family_name
-    %br/
-    = f.text_field :post_family_name
-  .field
-    = f.label :post_family_name_kana
-    %br/
-    = f.text_field :post_family_name_kana
-  .field
-    = f.label :post_first_name
-    %br/
-    = f.text_field :post_first_name
-  .field
-    = f.label :post_first_name_kana
-    %br/
-    = f.text_field :post_first_name_kana
-  .field
-    = f.label :postal_code
-    %br/
-    = f.text_field :postal_code
-  .field
-    = f.label :prefecture_id
-    %br/
-    = f.text_field :prefecture_id
-  .field
-    = f.label :city
-    %br/
-    = f.text_field :city
-  .field
-    = f.label :address
-    %br/
-    = f.text_field :address
-  .field
-    = f.label :building
-    %br/
-    = f.text_field :building
-  .field
-    = f.label :phone_number
-    %br/
-    = f.text_field :phone_number
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+  .main
+    .main__container
+      .main__container__title
+        住所情報入力
+      .main__container__form
+        .input-default
+          = f.label :苗字
+          %span.form-require 必須
+          %br/
+          = f.text_field :post_family_name, class: 'input', placeholder: ' 例）山田'
+        .input-default
+          = f.label :苗字カナ
+          %span.form-require 必須
+          %br/
+          = f.text_field :post_family_name_kana, class: 'input', placeholder: ' 例）ヤマダ'
+        .input-default
+          = f.label :名前
+          %span.form-require 必須
+          %br/
+          = f.text_field :post_first_name, class: 'input', placeholder: ' 例）太郎'
+        .input-default
+          = f.label :名前カナ
+          %span.form-require 必須
+          %br/
+          = f.text_field :post_first_name_kana, class: 'input', placeholder: ' 例）タロウ'
+        .input-default
+          = f.label :郵便番号
+          %span.form-require 必須
+          %br/
+          = f.text_field :postal_code, class: 'input', placeholder: ' 例）XXX-XXXX'
+        .input-default
+          = f.label :都道府県
+          %span.form-require 必須
+          %br/
+          = f.select :prefecture_id, options_for_select(Prefecture.data.map{|prefecture|[prefecture[:name], prefecture[:id], {}]}, ""), {}, {class: 'input'}
+        .input-default
+          = f.label :市区町村
+          %span.form-require 必須
+          %br/
+          = f.text_field :city, class: 'input', placeholder: ' 例）XX市'
+        .input-default
+          = f.label :番地
+          %span.form-require 必須
+          %br/
+          = f.text_field :address, class: 'input', placeholder: ' 例）XX丁目XX番地XX'
+        .input-default
+          = f.label :建物名
+          %br/
+          = f.text_field :building, class: 'input', placeholder: ' 例）XXビル'
+        .input-default
+          = f.label :電話番号
+          %br/
+          = f.text_field :phone_number, class: 'input', placeholder: ' 例）090-XXXX-XXXX'
+        .btn-default
+          = f.submit "登録する", class: "btn-next"

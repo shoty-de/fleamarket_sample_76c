@@ -8,4 +8,14 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    .header
+      = render 'layouts/header'
+
+    .main
+      = yield
+
+    .footer
+      = render 'layouts/footer'
+
+    .btn
+      = render 'layouts/product_btn'
