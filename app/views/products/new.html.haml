@@ -4,17 +4,17 @@
       = link_to do
         = image_tag 'material/logo/logo.png', height: '49', width: '185'
   .input-area
-    = form_with model: @product do |f|
+    = form_with model: @product,local: true do |f|
       .field
         .field-label
           = f.label '商品画像', class: 'field-label__name'
           %span.field-label__notice 必須
         .image-box
           .image-box__container
-            = f.fields_for :images do |i|
+            = f.fields_for @product.product_images do |i|
               .image-list
                 %label{for: "img-file", class: "input-area-0", id: "image"}
-                  = i.file_field :image, type: 'file', name: "item[images_attributes][][image_url]", value:"", style: "display:none", id:"img-file"
+                  = i.file_field :image, type: 'file', name: "product[product_images_attributes][][image]", value:"", style: "display:none", id:"img-file"
                   = image_tag 'material/icon/icon_camera.png', height: '24', width: '24'
       .field
         .field-label
@@ -34,12 +34,12 @@
           = f.label 'カテゴリー', class: 'field-label__name'
           %span.field-label__notice 必須
         .field-input#parant
-          = f.select :category, @category_parent_array, {}, class: 'field-input__select'
+          = f.select :category_id, @category_parent_array, {}, class: 'field-input__select'
         .field-label
           = f.label 'ブランド', class: 'field-label__name'
           %span#optional.field-label__notice 任意
         .field-input
-          = f.text_field :brand_id, placeholder: "例） シャネル", class: 'field-input__text-field'
+          = f.text_field :brand, placeholder: "例） シャネル", class: 'field-input__text-field'
         .field-label
           = f.label '商品の状態', class: 'field-label__name'
           %span.field-label__notice 必須

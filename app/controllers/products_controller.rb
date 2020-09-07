@@ -20,17 +20,17 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to root_path
     else
-      flash[:alert] = '投稿に失敗しました'
-      render :new
+      flash[:error] = '必須項目を全て入力してください'
+      redirect_to new_product_path
     end
   end
 
   private
   def product_params
-    params.require(:product).permit(:title, :text, :condition, :shipping_charge, :deliver_leadtime, :price, :seller_id, :buyer_id, :category_id, :size_id, :brand_id, :prefecture_id, product_images_attributes: [:image])
+    params.require(:product).permit(:title, :text, :condition, :brand, :shipping_charge, :deliver_leadtime, :price, :seller_id, :buyer_id, :category_id, :size_id, :prefecture_id, product_images_attributes: [:image])
   end
+
   def need_login
     redirect_to root_path unless user_signed_in?
   end
-
 end

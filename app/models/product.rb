@@ -1,11 +1,11 @@
 class Product < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
-  belongs_to :seller, class_name: "User", foreign_key: "seller_id"
-  belongs_to :buyer,  class_name: "User", foreign_key: "buyer_id"
+  belongs_to :seller, class_name: "User", foreign_key: "seller_id", optional: true
+  belongs_to :buyer,  class_name: "User", foreign_key: "buyer_id", optional: true
   belongs_to :category
-  belongs_to :size
-  belongs_to :brand
+  # belongs_to :size, optonal: true
+  # belongs_to :brand
   belongs_to_active_hash :prefecture
   has_many :product_images
   accepts_nested_attributes_for :product_images, allow_destroy: true
@@ -16,4 +16,6 @@ class Product < ApplicationRecord
   validates :shipping_charge,  presence: true
   validates :deliver_leadtime, presence: true
   validates :price,            presence: true
+  validates :prefecture,       presence: true
+  validates :product_images,   presence: true
 end

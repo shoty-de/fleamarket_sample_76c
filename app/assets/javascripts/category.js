@@ -8,7 +8,7 @@ $(function() {
   function AppendChildBox(insertHTML){
     var ChildSelectHtml = '';
     ChildSelectHtml = ` <div class="field-input" id="category">
-                        <select class="field-input__select" name="product[category]" id="product_category"><option value="選択してください">選択してください</option>
+                        <select class="field-input__select" name="product[category_id]" id="product_category_id"><option value="選択してください">選択してください</option>
                         ${insertHTML}
                         </select>
                         </div>`
@@ -17,8 +17,8 @@ $(function() {
   };
 
 
-  $("#product_category").on("change", function(){
-    var selected_categry = $("#product_category").val()
+  $("#product_category_id").on("change", function(){
+    var selected_categry = $("#product_category_id").val()
     if (selected_categry != "選択してください"){
     $.ajax({
       url: "get_children_category",

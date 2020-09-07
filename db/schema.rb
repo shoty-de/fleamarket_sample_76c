@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_093922) do
     t.string "title", null: false
     t.string "text", null: false
     t.string "condition", null: false
+    t.string "brand"
     t.integer "shipping_charge", null: false
     t.integer "deliver_leadtime", null: false
     t.integer "price", null: false
@@ -68,7 +69,6 @@ ActiveRecord::Schema.define(version: 2020_08_20_093922) do
     t.integer "buyer_id"
     t.integer "category_id"
     t.integer "size_id"
-    t.integer "brand_id"
     t.integer "prefecture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
