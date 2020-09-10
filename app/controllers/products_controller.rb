@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.where(buyer_id: nil).includes(:product_images)
+    @product = Product.where( 'id >= ?', rand(Product.first.id..Product.last.id) ).first
+    @category = Product.where(category_id: "#{@product [:category_id]}", buyer_id: nil)
   end
 
   def new
