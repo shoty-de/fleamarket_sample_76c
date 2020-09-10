@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
 
+  def index
+    @products = Product.where(buyer_id: nil).includes(:product_images)
+  end
+
   def new
     @product = Product.new
     @product.product_images.new

@@ -1,4 +1,4 @@
-.main
+.top-main
   .firstVisual
     .firstVisual__content
       .firstVisual__content--first
@@ -97,16 +97,18 @@
       .product__title
         新規投稿商品
       .product__lists
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
+        - @products.last(5).each do |p|
+          = link_to do
+            .list
+              .list__image
+                = image_tag p.product_images.first.image.to_s, height: '150', width: '220'
+              .list__infomation
+                .title
+                  = p.title 
+                .price
+                  ¥
+                  = p.price
+                  %p.tax (税込)
   .fifthVisuals.under
     .header
       ピックアップブランド
@@ -114,16 +116,7 @@
       .product__title
         アーカイバ
       .product__lists
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
+        
   .lastVisual
     .content
       .content__title
