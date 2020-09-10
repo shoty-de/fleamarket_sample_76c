@@ -3,15 +3,16 @@
     .topContent
       .itemBox
         .itemBox__name
-          商品名
+          = @product.title
         .itemBox__body
           .itemBox__body-mainImg
-            = image_tag 'icon-kuroneko.jpg', height: '346px'
+            = image_tag @product.product_images.first.image.to_s, height: '346px'
           .itemBox__body-subImg
-            = image_tag 'icon-kuroneko.jpg', height: '87px'
+            - @product.product_images[1..-1].each do |i|
+              = image_tag i.image.to_s, height: '87px'
         .itemBox__price
           .itemBox__price-main
-            ￥10000
+            = "¥#{@product.price}"
           .itemBox__price-detail
             (税込み)送料込み
         .itemDetail
@@ -23,42 +24,39 @@
                 %th
                   出品者
                 %td
-                  値
+                  = @product.seller.nickname
               %tr
                 %th
                   カテゴリー
                 %td
-                  値
+                  親カテゴリー？
+                  %br
+                  = @product.category.name
               %tr
                 %th
                   ブランド
                 %td
-                  値
-              %tr
-                %th
-                  サイズ
-                %td
-                  値
+                  = @product.brand
               %tr
                 %th
                   商品の状態
                 %td
-                  値
+                  = @product.condition.condition
               %tr
                 %th
                   配送料の負担
                 %td
-                  値
+                  = @product.shipping_charge.charge
               %tr
                 %th
                   発送元の地域
                 %td
-                  値
+                  = @product.prefecture.name
               %tr
                 %th
                   発送日の目安
                 %td
-                  値
+                  = @product.deliver_leadtime.leadtime
         .optionalArea
           = link_to "#", class: "optionalBtn likeBtn" do
             %i.fa.fa-star
@@ -79,27 +77,28 @@
             = f.submit "コメントする", class: "commentBtn"
 
     .links
-      = link_to "#", class: "btnToLeft" do
+      = link_to "#{@product.id - 1}", class: "btnToLeft" do
         %i.fa.fa-angle-left
         前の商品
-      = link_to "#", class: "btnToRight" do
+      = link_to "#{@product.id + 1}", class: "btnToRight" do
         後ろの商品
         %i.fa.fa-angle-right
 
     .relatedItems
       = link_to "#" do
-        （親カテゴリー）をもっと見る
+        = "#{@product.category.name}をもっと見る"
       .productLists
-        .productList
-          = link_to "#" do
-            .productList--img
-              = image_tag 'icon-kuroneko.jpg', height: '150px'
-            .productList--body
-              .name
-                商品名
-              .details
-                .price
-                  価格
-                  %i.fa.fa-star
-                .tax
-                  （税込）
+        - @products.each do |product|
+          .productList
+            = link_to "#{product.id}" do
+              .productList--img
+                = image_tag product.product_images.first.image.to_s, height: '150px'
+              .productList--body
+                .name
+                  = product.title
+                .details
+                  .price
+                    = product.price
+                    %i.fa.fa-star
+                  .tax
+                    （税込）
