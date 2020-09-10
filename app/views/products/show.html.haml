@@ -1,0 +1,105 @@
+.showMain
+  .content
+    .topContent
+      .itemBox
+        .itemBox__name
+          商品名
+        .itemBox__body
+          .itemBox__body-mainImg
+            = image_tag 'icon-kuroneko.jpg', height: '346px'
+          .itemBox__body-subImg
+            = image_tag 'icon-kuroneko.jpg', height: '87px'
+        .itemBox__price
+          .itemBox__price-main
+            ￥10000
+          .itemBox__price-detail
+            (税込み)送料込み
+        .itemDetail
+          商品説明の文章です。
+        .table
+          %table
+            %tbody
+              %tr
+                %th
+                  出品者
+                %td
+                  値
+              %tr
+                %th
+                  カテゴリー
+                %td
+                  値
+              %tr
+                %th
+                  ブランド
+                %td
+                  値
+              %tr
+                %th
+                  サイズ
+                %td
+                  値
+              %tr
+                %th
+                  商品の状態
+                %td
+                  値
+              %tr
+                %th
+                  配送料の負担
+                %td
+                  値
+              %tr
+                %th
+                  発送元の地域
+                %td
+                  値
+              %tr
+                %th
+                  発送日の目安
+                %td
+                  値
+        .optionalArea
+          = link_to "#", class: "optionalBtn likeBtn" do
+            %i.fa.fa-star
+            お気に入り
+          .optional
+            = link_to "#", class: "optionalBtn" do
+              %i.fa.fa-flag
+              不適切な商品の通報
+      .commentBox
+        .commentContents
+        = form_with(model: @comment, local: true) do |f|
+          .new_comment
+            = f.text_area :text, class: "commentArea"
+            .noticeMsg
+              相手のことを考え丁寧なコメントを心がけましょう。
+              %br
+              不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            = f.submit "コメントする", class: "commentBtn"
+
+    .links
+      = link_to "#", class: "btnToLeft" do
+        %i.fa.fa-angle-left
+        前の商品
+      = link_to "#", class: "btnToRight" do
+        後ろの商品
+        %i.fa.fa-angle-right
+
+    .relatedItems
+      = link_to "#" do
+        （親カテゴリー）をもっと見る
+      .productLists
+        .productList
+          = link_to "#" do
+            .productList--img
+              = image_tag 'icon-kuroneko.jpg', height: '150px'
+            .productList--body
+              .name
+                商品名
+              .details
+                .price
+                  価格
+                  %i.fa.fa-star
+                .tax
+                  （税込）
