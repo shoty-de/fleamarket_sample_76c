@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  include ApplicationHelper
 
   def new
     @product = Product.new
@@ -27,7 +28,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
-    @products = Product.where(category_id: @product.category_id).order("created_at DESC")
+    @category = Category.find(@product.category.ancestry)
+    search_parent_category(@category)
   end
 
   private
