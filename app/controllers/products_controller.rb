@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-  include ApplicationHelper
 
   def index
     @products = Product.where(buyer_id: nil).includes(:product_images)
@@ -35,7 +34,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @category = Category.find(@product.category.ancestry)
-    search_parent_category(@category)
+    @products = Category.where(ancestry: @category.id).map { |c| c.products }.flatten!.shuffle
   end
 
   private
