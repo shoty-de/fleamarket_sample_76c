@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
   root 'products#index'
-  resources :products, only: [:new, :create, :show] do
+  resources :products, only: [:index, :new, :create, :show] do
     collection do
       get 'get_children_category', defaults: { format: 'json' }
     end
