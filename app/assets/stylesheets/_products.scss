@@ -228,7 +228,7 @@
     }
   }
   .thirdVisual {
-    background-image: image-url(material/pict/bg-topMiddleDl-pict.jpg);
+    background-image: image-url('material/pict/bg-topMiddleDl-pict.jpg');
     background-position: bottom right;
     height: 400px;
     background-size: cover;
@@ -368,7 +368,7 @@
     }
   }
   .lastVisual{
-    background-image: image-url(material/pict/bg-appBanner-pict.jpg);
+    background-image: image-url('material/pict/bg-appBanner-pict.jpg');
     padding: 100px 40px;
     position: relative;
     background-size: cover;
