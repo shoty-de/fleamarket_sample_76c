@@ -44,7 +44,6 @@
           = f.label '商品の状態', class: 'field-label__name'
           %span.field-label__notice 必須
         .field-input
-          -# = f.select :condition, [ ["新品、未使用", 1], ["未使用に近い", 2], ["目立った傷や汚れなし", 3], ["やや傷や汚れあり", 4], ["傷や汚れあり", 5], ["全体的に状態が悪い", 6] ], {prompt: "選択してください"}, class: 'field-input__select'
           = f.collection_select :condition_id, Condition.all, :id, :condition, {prompt: "選択してください"}, class: 'field-input__select'
       .field
         .field-category
@@ -53,7 +52,6 @@
           = f.label '配送料の負担', class: 'field-label__name'
           %span.field-label__notice 必須
         .field-input
-          -# = f.select :shipping_charge, [ ["送料込み（出品者負担）", 1], ["着払い（購入者負担）", 2] ], {prompt: "選択してください"}, class: 'field-input__select'
           = f.collection_select :shipping_charge_id, ShippingCharge.all, :id, :charge, {prompt: "選択してください"}, class: 'field-input__select'
         .field-label
           = f.label '発送元の地域', class: 'field-label__name'
@@ -64,7 +62,6 @@
           = f.label '発送までの日数', class: 'field-label__name'
           %span.field-label__notice 必須
         .field-input
-          -# = f.select :deliver_leadtime, [ ["1~2日で発送", 1], ["2~3日で発送", 2], ["4~7日で発送", 3] ], {prompt: "選択してください"},  class: 'field-input__select'
           = f.collection_select :deliver_leadtime_id, DeliverLeadtime.all, :id, :leadtime, {prompt: "選択してください"}, class: 'field-input__select'
       .field
         .field-category
