@@ -1,16 +1,17 @@
 $(function() {
 
   function OptionHTML(children){
-    var option =  '<option value="${children.child_id}">${children.child_name}</option>'
+    var option =  `<option value="${children.child_id}">${children.child_name}</option>`
     return option
   };
 
   function AppendChildBox(insertHTML){
     var ChildSelectHtml = '';
-    ChildSelectHtml = ` <div class="field-input" id="category">
-                        <select class="field-input__select" name="product[category_id]" id="product_category_id"><option value="選択してください">選択してください</option>
-                        ${insertHTML}
-                        </select>
+    ChildSelectHtml =  `<div class="field-input" id="category">
+                          <select class="field-input__select" name="product[category_id]" id="product_category_id">
+                            <option value="選択してください">選択してください</option>
+                            ${insertHTML}
+                          </select>
                         </div>`
     $("#parant").append(ChildSelectHtml)
 
