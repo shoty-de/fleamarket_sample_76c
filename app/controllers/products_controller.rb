@@ -33,9 +33,15 @@ class ProductsController < ApplicationController
     end
   end
 
+  def show
+    @product = Product.find(params[:id])
+    @category = Category.find(@product.category.ancestry)
+    @products = Category.where(ancestry: @category.id).map { |c| c.products }.flatten!.shuffle
+  end
+
   private
   def product_params
-    params.require(:product).permit(:title, :text, :condition, :brand, :shipping_charge, :deliver_leadtime, :price, :seller_id, :buyer_id, :category_id, :size_id, :prefecture_id, product_images_attributes: [:image])
+    params.require(:product).permit(:title, :text, :condition_id, :brand, :shipping_charge_id, :deliver_leadtime_id, :price, :seller_id, :buyer_id, :category_id, :prefecture_id, product_images_attributes: [:image]).merge(seller_id: current_user.id)
   end
 
   def need_login
