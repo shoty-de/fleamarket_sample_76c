@@ -97,7 +97,7 @@
       .product__title
         人気のカテゴリー
       .product__lists
-        - if @products.nil?
+        - if @category.present?
           - @category.last(10).reverse_each do |c|
             = link_to do
               .list
@@ -117,19 +117,18 @@
       .product__title
         早い者勝ち！
       .product__lists
-        - if @products.nil?
-          - @products.last(10).reverse_each do |p|
-            = link_to do
-              .list
-                .list__image
-                  = image_tag p.product_images.first.image.to_s, height: '150', width: '220'
-                .list__infomation
-                  .title
-                    = p.title 
-                  .price
-                    ¥
-                    = p.price
-                    %p.tax (税込)
+        - @products.last(10).reverse_each do |p|
+          = link_to do
+            .list
+              .list__image
+                = image_tag p.product_images.first.image.to_s, height: '150', width: '220'
+              .list__infomation
+                .title
+                  = p.title 
+                .price
+                  ¥
+                  = p.price
+                  %p.tax (税込)
   .lastVisual
     .content
       .content__title
