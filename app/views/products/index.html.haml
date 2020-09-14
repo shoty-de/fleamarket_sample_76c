@@ -1,4 +1,4 @@
-.main
+.top-main
   .firstVisual
     .firstVisual__content
       .firstVisual__content--first
@@ -92,38 +92,44 @@
           お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
   .fifthVisuals
     .header
-      ピックアップカテゴリー
+      ピックアップ商品
     .product
       .product__title
-        新規投稿商品
+        人気のカテゴリー
       .product__lists
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
+        - if @products.nil?
+          - @category.last(10).reverse_each do |c|
+            = link_to do
+              .list
+                .list__image
+                  = image_tag c.product_images.first.image.to_s, height: '150', width: '220'
+                .list__infomation
+                  .title
+                    = c.title 
+                  .price
+                    ¥
+                    = c.price
+                    %p.tax (税込)
   .fifthVisuals.under
     .header
-      ピックアップブランド
+      新規投稿商品
     .product
       .product__title
-        アーカイバ
+        早い者勝ち！
       .product__lists
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
-        .list
-          = image_tag 'test.jpg', height: '245px', width: '220px'
+        - if @products.nil?
+          - @products.last(10).reverse_each do |p|
+            = link_to do
+              .list
+                .list__image
+                  = image_tag p.product_images.first.image.to_s, height: '150', width: '220'
+                .list__infomation
+                  .title
+                    = p.title 
+                  .price
+                    ¥
+                    = p.price
+                    %p.tax (税込)
   .lastVisual
     .content
       .content__title
