@@ -21,7 +21,7 @@
         .herderLow__user-controll
           = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'linkStyle'
         .herderLow__user-controll
-          = link_to 'マイページ', {}, class: 'linkStyle'
+          = link_to 'マイページ', user_path(current_user), class: 'linkStyle'
       - else
         .herderLow__user-controll
           = link_to 'ログイン', new_user_session_path, class: 'linkStyle'
