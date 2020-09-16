@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to root_path
+      # redirect_to root_path
     else
       flash[:error] = '必須項目を全て入力してください'
       redirect_to new_product_path
@@ -37,6 +37,15 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @category = Category.find(@product.category.ancestry)
     @products = Category.where(ancestry: @category.id).map { |c| c.products }.flatten!.shuffle
+  end
+
+  def edit
+  end
+
+  def destroy
+  end
+
+  def purchase
   end
 
   private
