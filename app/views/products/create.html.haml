@@ -4,5 +4,5 @@
   .success
     %h3
       出品が完了しました。
-    = link_to '出品した商品を確認する', "/products/#{@product.id}", method: :get
-    = link_to '続けて商品を出品する', "/products/new", method: :get
+    = link_to '出品した商品を確認する', product_path(@product)
+    = link_to '続けて商品を出品する', new_product_path
