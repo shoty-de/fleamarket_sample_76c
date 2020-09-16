@@ -104,3 +104,15 @@
                     %i.fa.fa-star
                   .tax
                     （税込）
+
+//出品者にしか商品の情報編集・削除のリンクが踏めないようになっている
+- if user_signed_in? && current_user.id == @product.seller_id
+  .productManage
+    = link_to "商品の編集", product_path(@product.id), class: "productManage__edit"
+    %br
+    = link_to "商品の削除", product_path(@product.id), method: :delete, class: "productManage__delete"
+
+//出品者以外にしか商品購入のリンクが踏めないようになっている
+- if user_signed_in? && current_user.id != @product.seller_id
+  .productManage
+    = link_to "商品を購入する", product_path(@product.id), class: "productManage__purchase"
