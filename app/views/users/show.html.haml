@@ -1,36 +1,12 @@
-
 .contents
   .mypage-container
-    .side-content
-      .mypage-nav
-        .mypage-nav__list
-          .mypage-nav__list--item
-            マイページ
-            %i.fas.fa-angle-right.angle-right
-          .mypage-nav__list--item
-            出品した商品
-            %i.fas.fa-angle-right.angle-right
-          .mypage-nav__list--item
-            購入した商品
-            %i.fas.fa-angle-right.angle-right
-        .mypage-nav__head
-          設定
-        .mypage-nav__list
-          .mypage-nav__list--item
-            プロフィール
-            %i.fas.fa-angle-right.angle-right
-          .mypage-nav__list--item
-            お届け先住所
-            %i.fas.fa-angle-right.angle-right
-          .mypage-nav__list--item
-            クレジットカード
-            %i.fas.fa-angle-right.angle-right
-          .mypage-nav__list--item
-            メール・パスワード
-            %i.fas.fa-angle-right.angle-right
+    =render "side-content"
+
     .main-content
       .mypage-user
         .mypage-user__name
-          ユーザーニックネーム
+          = current_user.nickname
+          さんのマイページ
         .mypage-user__number
-          出品数（DBから出品数をカウント）
+          出品数
+          = current_user.sell_products.length
