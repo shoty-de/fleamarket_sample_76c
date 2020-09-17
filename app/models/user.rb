@@ -10,5 +10,7 @@ class User < ApplicationRecord
   has_one :profile
   has_many :addresses
   has_many :creditcards
-  has_many :products
+
+  has_many :buy_products, class_name: "Product", foreign_key: "buyer_id"
+  has_many :sell_products, class_name: "Product", foreign_key: "seller_id"
 end
