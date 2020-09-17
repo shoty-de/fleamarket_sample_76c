@@ -1,0 +1,100 @@
+.purchaseMain {
+  background-color: rgb(245, 245, 245);
+  .purchaseHeader {
+    height: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .purchaseBody {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    .confirmation {
+      width: 700px;
+      background-color: #fff;
+      &__container {
+        .item {
+          width: 375px;
+          margin: 0 auto;
+          padding: 32px 16px;
+          border-bottom: solid 1px rgb(245, 245, 245);
+          .title {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+          }
+          .product {
+            display: flex;
+            &__image {
+              .image {
+                border-radius: 5px;
+              }
+            }
+            &__infomation {
+              width: 100%;
+              margin-left: 16px;
+              .productTitle {
+                font-size: 14px;
+                margin-bottom: 8px;
+              }
+              .other {
+                text-align: right;
+                .shippingChage {
+                  font-size: 12px;
+                }
+                .price {
+                  font-size: 15px;
+                  font-weight: 600;
+                }
+              }
+            }
+          }
+          .payment {
+            &__title {
+              font-size: 14px;
+              font-weight: 600;
+              margin-bottom: 8px;
+            }
+            &__method {
+              .registration {
+                font-size: 14px;
+                text-decoration: none;
+                color: rgb(0, 149, 238);
+              }
+            }
+          }
+          .shipping {
+            &__title {
+              font-size: 14px;
+              font-weight: 600;
+              margin-bottom: 8px;
+            }
+            &__address {
+              .registration {
+                font-size: 14px;
+                text-decoration: none;
+                color: rgb(0, 149, 238);
+              }
+            }
+          }
+          .confirm {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &__btn {
+              height: 48px;
+              width: 300px;
+              background-color: #ea352d;
+              font-weight: bold;
+              color: white;
+              border-radius: 4px;
+              border: 1px solid transparent;
+            }
+          }
+        }
+      }
+    }
+  }
+}

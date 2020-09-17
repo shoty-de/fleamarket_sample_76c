@@ -18,7 +18,6 @@ class ProductsController < ApplicationController
     @products = Product.includes(:product_images).order('created_at DESC')
   end
 
-
   def get_children_category
     @category_children = Category.find_by(name: "#{params[:parent_name]}").children
   end
@@ -31,6 +30,10 @@ class ProductsController < ApplicationController
       flash[:error] = '必須項目を全て入力してください'
       redirect_to new_product_path
     end
+  end
+
+  def show
+    
   end
 
   private
