@@ -11,10 +11,11 @@ Rails.application.routes.draw do
     get 'products/create', to: 'products#show'
   end
   root 'products#index'
+
   resources :products, only: [:index, :new, :create, :show, :edit, :destroy] do
     collection do
       get 'get_children_category', defaults: { format: 'json' }
+      get 'purchase_products', to: 'products/purchase_products'
     end
   end
 end
-
