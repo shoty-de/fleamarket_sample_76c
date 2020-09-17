@@ -14,6 +14,15 @@ Rails.application.routes.draw do
       get 'get_children_category', defaults: { format: 'json' }
     end
   end
-  resources :users, only: :show
+  resources :users, only: :show do
+    collection do
+      get "sell_products"
+      get "buy_products"
+      get "show_profile"
+      get "show_address"
+      get "creditcard"
+      get "show_userdata"
+    end
+  end
 end
 
