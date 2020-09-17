@@ -33,6 +33,9 @@ class ProductsController < ApplicationController
   end
 
   def show
+  end
+
+  def purchase_products
     
   end
 
