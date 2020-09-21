@@ -79,5 +79,6 @@ end
 gem 'devise'
 gem 'active_hash'
 gem 'ancestry'
-gem "haml-rails"
-
+gem 'haml-rails'
+gem 'jquery-rails'
+gem 'pry-rails'

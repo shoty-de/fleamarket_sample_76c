@@ -15,7 +15,10 @@
     .headerLow
       .headerLow__search
         .headerLow__search-style
-          = link_to 'カテゴリー', {}, class: 'linkStyle'
+          カテゴリ
+          - @category_parent.each do |parent|
+            .headerLow__search-style__category#TEST
+              = link_to parent.name , "#" , class: 'block' , id:parent.id
         .headerLow__search-style.left
           = link_to 'ブランド', {}, class: 'linkStyle'
       .headerLow__user

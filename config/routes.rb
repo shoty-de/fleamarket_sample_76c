@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
   root 'products#index'
-  resources :products, only: [:index]
+  resources :products, only: [:index] do
+    collection do
+      get 'childs', defaults: { format: 'json' }
+    end
+  end  
 end
-
