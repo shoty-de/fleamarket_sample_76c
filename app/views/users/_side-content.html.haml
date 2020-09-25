@@ -24,9 +24,10 @@
         .mypage-nav__list--item
           お届け先住所
           %i.fas.fa-angle-right.angle-right
-      .mypage-nav__list--item
-        クレジットカード
-        %i.fas.fa-angle-right.angle-right
+      = link_to creditcards_path(current_user) do
+        .mypage-nav__list--item
+          クレジットカード
+          %i.fas.fa-angle-right.angle-right
       = link_to show_userdata_users_path(current_user) do
         .mypage-nav__list--item
           メールアドレス

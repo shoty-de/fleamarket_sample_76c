@@ -20,9 +20,9 @@ Rails.application.routes.draw do
       get "buy_products"
       get "show_profile"
       get "show_address"
-      get "creditcard"
       get "show_userdata"
     end
   end
+  resources :creditcards, only: [:index, :new, :show, :delete]
 end
 
