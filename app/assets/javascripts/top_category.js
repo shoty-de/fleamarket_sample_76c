@@ -19,6 +19,7 @@ $(function(){
     }
 
    $(document).on("mouseenter", ".block", function(){
+    
     parent_id = $(this).attr("id")
     $.ajax({
       url: "/products/childs",
@@ -27,6 +28,7 @@ $(function(){
       dataType: "json"
     })
     .done(function(child){
+        $(".a").remove()
       child.forEach(function(one_child){
         buildHTML(one_child)
       })
