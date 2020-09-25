@@ -1,0 +1,48 @@
+.contents
+  .mypage-container
+    =render "users/side-content"
+
+    .main-content
+      .mypage-user
+        .mypage-user__name
+          = current_user.nickname
+          さんのクレジットカード情報
+      .mypage-informations
+        - if @creditcard.present?
+          .information
+            末尾
+            %br/
+            %input.data{value: "**** **** **** #{@default_card_information.last4}", readonly: "readonly"}
+          .information
+            有効期限
+            %br/
+            %input.data{value: "#{@default_card_information.exp_month.to_s}/#{@default_card_information.exp_year.to_s.slice(2,3)}", readonly: "readonly"}
+          = link_to new_creditcard_path do
+            .btn-default
+              .btn-next
+                新しいカードを登録する
+        - else
+          .information
+            カードは登録されていません。
+          = link_to new_creditcard_path do
+            .btn-default
+              .btn-next
+                カードを登録する
+
+
+
+
+      -# .mypage-informations
+      -#   .information
+      -#     末尾
+      -#     %br/
+      -#     %input.data{value: "**** **** **** 4242", readonly: "readonly"}
+      -#   .information
+      -#     有効期限
+      -#     %br/
+      -#     %input.data{value: "03/22", readonly: "readonly"}
+      -#   = link_to new_creditcard_path do
+      -#     .btn-default
+      -#       .btn-next
+      -#         新しいカードを登録する
+
