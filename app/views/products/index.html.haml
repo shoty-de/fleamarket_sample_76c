@@ -99,7 +99,7 @@
       .product__lists
         - if @category.present?
           - @category.last(10).reverse_each do |c|
-            = link_to do
+            = link_to product_path(c) do
               .list
                 .list__image
                   = image_tag c.product_images.first.image.to_s, height: '150', width: '220'
@@ -118,7 +118,7 @@
         早い者勝ち！
       .product__lists
         - @products.last(10).reverse_each do |p|
-          = link_to do
+          = link_to product_path(p) do
             .list
               .list__image
                 = image_tag p.product_images.first.image.to_s, height: '150', width: '220'

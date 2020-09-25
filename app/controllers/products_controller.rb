@@ -42,9 +42,6 @@ class ProductsController < ApplicationController
 
   def destroy
   end
-  
-  def purchase_products
-  end
 
   private
   def product_params
