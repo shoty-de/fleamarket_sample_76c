@@ -19,8 +19,8 @@
           - @category_parent.each do |parent|
             .headerLow__search-style__category#TEST
               = link_to parent.name , "#" , class: 'block' , id:parent.id
-        .headerLow__search-style.left
-          = link_to 'ブランド', {}, class: 'linkStyle'
+        .headerLow__search-style.right
+          = link_to 'ブランド', {}, class: 'linkStyleBrand'
       .headerLow__user
         - if user_signed_in?
           .herderLow__user-controll

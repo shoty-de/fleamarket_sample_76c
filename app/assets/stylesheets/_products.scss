@@ -60,34 +60,49 @@
       &__search {
         display: flex;
         padding-top: 15px;
-        
+        position: relative;
         .headerLow__search-style {
           &__category {
             background-color: white;
             padding: 10px;
             display: none;
-          }
+            position: relative;
+            z-index: 100;
+            }
             .block{
               text-decoration: none;
               color: black;
             }
-            &__special {
+            .a {
               background-color: white;
+              position: relative;
+              z-index: 100;
+              left: 106px;
               padding: 10px;
+              width: 100px;
+              
             }
-
           .linkStyle {
             text-decoration: none;
           }
         }
-        .headerLow__search-style.left {
+        .headerLow__search-style.right {
           padding-left: 32px;
+          position: absolute;
+          left: 50px;
+          width: 150px;
+          
+        }
+        .linkStyleBrand {
+          text-decoration: none;
+          color: black;
         }
       }
       &__user {
         display: flex;
         .herderLow__user-controll {
           padding-left: 16px;
+          line-height: 50px;
           .linkStyle {
             text-decoration: none;
             color: black;
@@ -100,6 +115,8 @@
 
 .main {
   background: #f8f8f8;
+  position: relative;
+  z-index: 50;
   .firstVisual {
     height: 560px;
     width: 100%;

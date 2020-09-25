@@ -1,21 +1,21 @@
 $(function(){
 
    $(".headerLow__search-style").hover(function(){
+     // 元々display:none;がついてるクラスを取得し、display:none;を外す。
     var category_parent = $(this).children(".headerLow__search-style__category")
         category_parent.show();
-    }, 
+    }, // 親要素のhoverの外れた時の記述↓
      function(){
       $(this).children(".headerLow__search-style__category").hide();
     });
 
     function buildHTML(one_child){
       var html =  `
-                    <div class= "headerLow__search-style__category__special">
+                    <div class= "a">
                       <a href= "#", class= "block" > ${one_child.name}</a>
                     </div>
                   `
-
-      $("").append(html);
+      $(".headerLow__search-style").append(html);
     }
 
    $(document).on("mouseenter", ".block", function(){
