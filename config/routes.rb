@@ -18,4 +18,13 @@ Rails.application.routes.draw do
       get 'purchase_products', to: 'products/purchase_products'
     end
   end
+  resources :users, only: :show do
+    collection do
+      get "sell_products"
+      get "buy_products"
+      get "show_profile"
+      get "show_address"
+      get "show_userdata"
+    end
+  end
 end
