@@ -23,6 +23,5 @@ Rails.application.routes.draw do
       get "show_userdata"
     end
   end
-  resources :creditcards, only: [:index, :new, :show, :delete]
 end
 
