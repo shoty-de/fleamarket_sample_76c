@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'creditcards/new'
-  get 'creditcards/show'
+  # get 'creditcards/new'
+  # get 'creditcards/show'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -21,11 +21,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :creditcards, only: [:new, :show] do
+  resources :creditcards, only: [:index, :new] do
     collection do
-      post 'show', to: 'card#show'
-      post 'pay', to: 'card#pay'
-      post 'delete', to: 'card#delete'
+      post 'pay', to: 'creditcards#pay'
+      post 'delete', to: 'creditcards#delete'
     end
   end
 end
