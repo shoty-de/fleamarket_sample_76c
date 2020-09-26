@@ -1,6 +1,7 @@
 class PurchaseController < ApplicationController
   require 'payjp'
   before_action :set_card
+  before_action :set_product
 
   def index
     if @card.present?
@@ -8,12 +9,10 @@ class PurchaseController < ApplicationController
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
     end
-    @product = Product.find(params[:format])
     @address = Address.find(current_user.id)
   end
 
   def pay
-    @product = Product.find(params[:format])
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
       :amount => @product.price, 
@@ -27,6 +26,10 @@ class PurchaseController < ApplicationController
 
   def set_card
     @card = Creditcard.where(user_id: current_user.id).last
+  end
+
+  def set_product
+    @product = Product.find(params[:format])
   end
 
 end
