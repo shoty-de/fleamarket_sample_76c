@@ -1,0 +1,31 @@
+.contents
+  .mypage-container
+    =render "side-content"
+
+    .main-content
+      .mypage-user
+        .mypage-user__name
+          = current_user.nickname
+          さんのクレジットカード情報
+      .mypage-informations
+        - if @creditcard.present?
+          .information
+            末尾
+            %br/
+            %input.data{value: "#{}", readonly: "readonly"}
+          .information
+            有効期限
+            %br/
+            %input.data{value: "#{}/#{}", readonly: "readonly"}
+          = link_to new_creditcard_path do
+            .btn-default
+              .btn-next
+                新しいカードを登録する
+        - else
+          .information
+            カードは登録されていません。
+          = link_to new_creditcard_path do
+            .btn-default
+              .btn-next
+                カードを登録する
+

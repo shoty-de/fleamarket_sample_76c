@@ -18,7 +18,6 @@ class ProductsController < ApplicationController
     @products = Product.includes(:product_images).order('created_at DESC')
   end
 
-
   def get_children_category
     @category_children = Category.find_by(name: "#{params[:parent_name]}").children
   end
@@ -42,9 +41,6 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-  end
-
-  def purchase
   end
 
   private

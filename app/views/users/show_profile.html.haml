@@ -1,0 +1,30 @@
+.contents
+  .mypage-container
+    =render "side-content"
+
+    .main-content
+      .mypage-user
+        .mypage-user__name
+          = current_user.nickname
+          さんのプロフィール
+      .mypage-informations
+        .information
+          名字
+          %br/
+          %input.data{value: "#{@profile.family_name}", readonly: "readonly"}
+        .information
+          名字カナ
+          %br/
+          %input.data{value: "#{@profile.family_name_kana}", readonly: "readonly"}
+        .information
+          名前
+          %br/
+          %input.data{value: "#{@profile.first_name}", readonly: "readonly"}
+        .information
+          名前カナ
+          %br/
+          %input.data{value: "#{@profile.first_name_kana}", readonly: "readonly"}
+        .information
+          生年月日
+          %br/
+          %input.data{value: "#{@profile.birthday.strftime("%Y年%m月%d日")}", readonly: "readonly"}

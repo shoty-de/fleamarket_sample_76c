@@ -1,0 +1,53 @@
+.contents
+  .mypage-container
+    =render "side-content"
+
+    .main-content
+      .mypage-user
+        .mypage-user__name
+          = current_user.nickname
+          さんのお届け先住所
+      .mypage-informations
+        - @addresses.each do |address|
+          .information
+            名字
+            %br/
+            %input.data{value: "#{address.post_family_name}", readonly: "readonly"}
+          .information
+            名字カナ
+            %br/
+            %input.data{value: "#{address.post_family_name_kana}", readonly: "readonly"}
+          .information
+            名前
+            %br/
+            %input.data{value: "#{address.post_first_name}", readonly: "readonly"}
+          .information
+            名前カナ
+            %br/
+            %input.data{value: "#{address.post_first_name_kana}", readonly: "readonly"}
+          .information
+            郵便番号
+            %br/
+            %input.data{value: "#{address.postal_code}", readonly: "readonly"}
+          .information
+            都道府県
+            %br/
+            %input.data{value: "#{address.prefecture.name}", readonly: "readonly"}
+          .information
+            市区町村
+            %br/
+            %input.data{value: "#{address.city}", readonly: "readonly"}
+          .information
+            番地
+            %br/
+            %input.data{value: "#{address.address}", readonly: "readonly"}
+          .information
+            建物名
+            %br/
+            %input.data{value: "#{address.building}", readonly: "readonly"}
+          .information
+            電話番号
+            %br/
+            %input.data{value: "#{address.phone_number}", readonly: "readonly"}
+        .paginate
+          = paginate(@addresses)

@@ -1,0 +1,26 @@
+.contents
+  .mypage-container
+    =render "side-content"
+
+    .main-content
+      .mypage-user
+        .mypage-user__name
+          = current_user.nickname
+          さんの出品商品
+
+      .productLists-user
+        - @products.each do |product|
+          .productList
+            = link_to "#{product.id}" do
+              .productList--img
+                = image_tag product.product_images.first.image.to_s, height: '150px'
+              .productList--body
+                .name
+                  = product.title
+                .details
+                  .price
+                    = product.price
+                  .tax
+                    （税込）
+        .paginate
+          = paginate(@products)

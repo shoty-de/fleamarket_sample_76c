@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
 
   function OptionHTML(children){
     var option =  `<option value="${children.child_id}">${children.child_name}</option>`

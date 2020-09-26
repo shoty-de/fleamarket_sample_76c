@@ -1,0 +1,51 @@
+.purchaseMain
+  .purchaseHeader
+    .purchaseHeader__logo
+      = image_tag 'material/logo/logo.png', height: '49', width: '185'
+  .purchaseBody
+    .confirmation
+      .confirmation__container
+        .item
+          %section.title 購入内容の確認
+      .confirmation__container
+        .item
+          .product
+            .product__image
+              = image_tag @product.product_images.first.image.to_s,  height: '80', width: '80', class: 'image'
+            .product__infomation
+              .productTitle
+                = @product.title
+              .other
+                .shippingChage 
+                  送料込み 
+                .price 
+                  = "(税込) ¥#{@product.price}"
+      .confirmation__container
+        .item
+          .payment
+            .payment__title
+              支払い方法
+            .payment__method
+              - if @default_card_information.blank?
+                = link_to '登録してください', creditcards_path, class: 'registration'
+              - else
+                = "**** **** **** " + @default_card_information.last4
+                - exp_month = @default_card_information.exp_month.to_s
+                - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                = exp_month + " / " + exp_year
+      .confirmation__container
+        .item
+          .shipping
+            .shipping__title
+              配送先
+            .shipping__address
+              = @address.city + @address.address
+      .confirmation__container
+        .item
+          - if @default_card_information.present?
+            = form_tag(pay_purchase_index_path(@product.id), method: :post, class: "confirm") do
+              %button.confirm__btn 購入する
+          - else
+            .caution
+              = submit_tag 'カードを登録してください', class: 'caution__btn'
+          

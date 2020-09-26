@@ -115,4 +115,4 @@
 //出品者以外にしか商品購入のリンクが踏めないようになっている
 - if user_signed_in? && current_user.id != @product.seller_id
   .productManage
-    = link_to "商品を購入する", product_path(@product.id), class: "productManage__purchase"
+    = link_to "商品を購入する",  purchase_index_path(@product.id), class: "productManage__purchase"

@@ -1,0 +1,34 @@
+.main__container
+  .main__container__title
+    クレジットカード登録
+  .main__container__form
+    -# = form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
+    = form_tag(pay_creditcards_path, method: :post, id: 'charge-form',  name: "inputForm") do
+      .input-default
+        %label カード番号
+        %span.form-require 必須
+        %br/
+        = text_field_tag "number", "", class: "input", placeholder: "例）4242424242424242" ,maxlength: "16", type: "text", id: "card_number"
+      .input-default
+        %label 有効期限
+        %span.form-require 必須
+        %br/
+        %select#exp_month{name: "exp_month", type: "text"}
+          %option{value: ""} --
+          - [*(1..12)].each do |n|
+            %option{value: "#{n}"}
+              = "%02d" % (n)
+        %span 月/
+        %select#exp_year{name: "exp_year", type: "text"}
+          %option{value: ""} --
+          - [*(Time.now.year..(Time.now.year + 10))].each do |n|
+            %option{value: "#{n}"}
+              = "%02d" % (n - 2000)
+        %span 年
+      .input-default
+        %label CVC
+        %span.form-require 必須
+        %br/
+        = text_field_tag "cvc", "", class: "input", placeholder: "例）123", maxlength: "4", id: "cvc"
+      .btn-default#card_token
+        = submit_tag "登録する", id: "token_submit", class: "btn-next"
