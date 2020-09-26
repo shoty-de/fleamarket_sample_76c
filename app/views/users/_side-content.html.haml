@@ -1,0 +1,34 @@
+.side-content
+  .mypage-nav
+    .mypage-nav__list
+      = link_to user_path(current_user) do
+        .mypage-nav__list--item
+          マイページ
+          %i.fas.fa-angle-right.angle-right
+      .mypage-nav__list--item
+        = link_to sell_products_users_path(current_user) do
+          出品した商品
+          %i.fas.fa-angle-right.angle-right
+      .mypage-nav__list--item
+        = link_to buy_products_users_path(current_user) do
+          購入した商品
+          %i.fas.fa-angle-right.angle-right
+    .mypage-nav__head
+      設定
+    .mypage-nav__list
+      = link_to show_profile_users_path(current_user) do
+        .mypage-nav__list--item
+          プロフィール
+          %i.fas.fa-angle-right.angle-right
+      = link_to show_address_users_path(current_user) do
+        .mypage-nav__list--item
+          お届け先住所
+          %i.fas.fa-angle-right.angle-right
+      = link_to creditcards_path(current_user) do
+        .mypage-nav__list--item
+          クレジットカード
+          %i.fas.fa-angle-right.angle-right
+      = link_to show_userdata_users_path(current_user) do
+        .mypage-nav__list--item
+          メールアドレス
+          %i.fas.fa-angle-right.angle-right

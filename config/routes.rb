@@ -36,4 +36,13 @@ Rails.application.routes.draw do
       get 'done', to: 'purchase#done'
     end
   end
+  resources :users, only: :show do
+    collection do
+      get "sell_products"
+      get "buy_products"
+      get "show_profile"
+      get "show_address"
+      get "show_userdata"
+    end
+  end
 end
