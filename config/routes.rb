@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   get 'purchase/index'
   get 'purchase/done'
-  # get 'creditcards/new'
-  # get 'creditcards/show'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }

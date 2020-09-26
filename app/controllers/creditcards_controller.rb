@@ -1,6 +1,7 @@
 class CreditcardsController < ApplicationController
 
   require "payjp"
+  before_action :set_card
 
   def new
   end
@@ -25,19 +26,16 @@ class CreditcardsController < ApplicationController
   end
   
   def delete
-    card = Creditcard.where(user_id: current_user.id).last
-    if card.blank?
-    else
+    if @card.present?
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
-      card.delete
+      @card.delete
     end
     redirect_to action: "new"
   end
 
   def index
-    @card = Creditcard.where(user_id: current_user.id).last
     if @card.blank?
       redirect_to action: "new"
     else
@@ -45,5 +43,9 @@ class CreditcardsController < ApplicationController
       customer = Payjp::Customer.retrieve(@card.customer_id)
       @default_card_information = customer.cards.retrieve(@card.card_id)
     end
+  end
+
+  def set_card
+    @card = Creditcard.where(user_id: current_user.id).last
   end
 end
