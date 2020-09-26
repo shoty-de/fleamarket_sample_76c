@@ -8,7 +8,7 @@
           = current_user.nickname
           さんのクレジットカード情報
       .mypage-informations
-        - if @creditcard.present?
+        - if @card.present?
           .information
             カード番号
             %br/
@@ -21,6 +21,9 @@
             .btn-default
               .btn-next
                 新しいカードを登録する
+          = form_tag(delete_creditcards_path, method: :post, id: 'charge-form', name: "inputForm", class: "btn-default") do
+            %input{ type: "hidden", name: "card_id", value: ""}
+            %button.btn-next 削除する
         - else
           .information
             カードは登録されていません。

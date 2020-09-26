@@ -37,13 +37,13 @@ class CreditcardsController < ApplicationController
   end
 
   def index
-    card = Creditcard.where(user_id: current_user.id).last
-    if card.blank?
+    @card = Creditcard.where(user_id: current_user.id).last
+    if @card.blank?
       redirect_to action: "new"
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      @default_card_information = customer.cards.retrieve(card.card_id)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @default_card_information = customer.cards.retrieve(@card.card_id)
     end
   end
 end
