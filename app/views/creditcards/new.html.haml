@@ -3,7 +3,7 @@
     クレジットカード登録
   .main__container__form
     -# = form_tag(pay_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
-    = form_tag(id: 'charge-form',  name: "inputForm") do
+    = form_tag(pay_creditcards_path, method: :post, id: 'charge-form',  name: "inputForm") do
       .input-default
         %label カード番号
         %span.form-require 必須
