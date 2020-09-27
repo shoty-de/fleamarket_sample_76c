@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :ensure_correct_user,{only: [:edit,:update,:destroy]}
 
   def index
     @products = Product.where(buyer_id: nil).includes(:product_images)
@@ -51,4 +52,13 @@ class ProductsController < ApplicationController
   def need_login
     redirect_to root_path unless user_signed_in?
   end
+
+  def ensure_correct_user
+    @product = Product.find(params[:id])
+    if current_user.id != @product.seller_id
+    flash[:notice] = "権限がありません"
+    redirect_to product_path(@product.id)
+    end
+  end
+
 end
