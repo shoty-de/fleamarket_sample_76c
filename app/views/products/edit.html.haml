@@ -11,8 +11,19 @@
           %span.field-label__notice 必須
         .image-box
           .image-box__container
-            = f.fields_for @product.product_images do |i|
-              .image-list
+            .image-list
+              = f.fields_for @product.product_images do |i|
+                - if @product.persisted?
+                  - @product.product_images.each do |product_image|
+                    .item-image{"data-image" => "#{product_image.image}"}
+                      .item-image__content
+                        .item-image__content--icon
+                          %img{height: "80", src: "#{product_image.image}", width: "114"}/
+                      .item-image__operetion
+                        .item-image__operetion--delete 削除
+                        .hidden-destroy
+                          = f.check_box :_destroy, data:{ image: product_image.image }
+
                 %label{for: "img-file", class: "input-area-0", id: "image"}
                   = i.file_field :image, type: 'file', name: "product[product_images_attributes][][image]", value:"", style: "display:none", id:"img-file"
                   = image_tag 'material/icon/icon_camera.png', height: '24', width: '24'
@@ -34,7 +45,7 @@
           = f.label 'カテゴリー', class: 'field-label__name'
           %span.field-label__notice 必須
         .field-input#parant
-          -# = f.select :category_id, @category_parent_array, {}, class: 'field-input__select'
+          = f.select :category_id, @category_parent_array, {}, class: 'field-input__select'
         .field-label
           = f.label 'ブランド', class: 'field-label__name'
           %span#optional.field-label__notice 任意
