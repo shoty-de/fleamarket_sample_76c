@@ -15,11 +15,15 @@
     .headerLow
       .headerLow__search
         .headerLow__search-style
-          カテゴリ
-          - @category_parent.each do |parent|
-            .headerLow__search-style__category#TEST
-              = link_to parent.name , "#" , class: 'block' , id:parent.id
-        .headerLow__search-style.right
+          .parentcategory 
+            カテゴリ
+            .test
+              .testclass
+                - @category_parent.each do |parent|
+                  .headerLow__search-style__category#parenttest
+                    = link_to parent.name , "#" , class: 'block' , id:parent.id
+              .testclass2
+        .headerLow__search-right
           = link_to 'ブランド', {}, class: 'linkStyleBrand'
       .headerLow__user
         - if user_signed_in?
