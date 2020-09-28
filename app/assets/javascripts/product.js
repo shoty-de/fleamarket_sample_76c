@@ -35,9 +35,23 @@ $(document).on('turbolinks:load', function () {
       });
     });
 
+    // チェックボックスを非表示にするcss（現時点では動作確認用に表示させている。完成したら非表示にする事）
+    // $('.hidden-destroy').hide();
+
     $(document).on("click", '.item-image__operetion--delete', function () {
       var target_image = $(this).parent().parent()
       var target_name = $(target_image).data('image')
+
+      // ↓追加
+      const hiddenCheck = $(`input[data-image="${target_name}"].hidden-destroy`);
+      // もしチェックボックスが存在すればチェックを入れる
+      if (hiddenCheck) {
+        hiddenCheck.prop('checked', true)
+      };
+      // ↑追加
+      // 「削除」をクリックするとチェックボックスにチェックが入るが、submitと結び付けられていないためDBから削除が出来ない
+
+      // file_field.files：挿入された画像ファイルの配列
       if (file_field.files.length == 1) {
         $('input[type=file]').val(null)
         dataBox.clearData();
