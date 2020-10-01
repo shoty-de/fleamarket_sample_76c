@@ -39,7 +39,8 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @category_parent_array = ["選択してください"]
+    # 子カテゴリーの表示方法を確認中
+    @category_parent_array = []
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
     end

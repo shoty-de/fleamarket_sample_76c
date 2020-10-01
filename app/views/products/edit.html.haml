@@ -47,7 +47,7 @@
           = f.label 'カテゴリー', class: 'field-label__name'
           %span.field-label__notice 必須
         .field-input#parant
-          = f.select :category_id, @category_parent_array, {}, class: 'field-input__select'
+          = f.select :parent_name, @category_parent_array, {selected:@product.category.parent.name}, class: 'field-input__select'
         .field-label
           = f.label 'ブランド', class: 'field-label__name'
           %span#optional.field-label__notice 任意
