@@ -39,11 +39,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    # 子カテゴリーの表示方法を確認中
     @category_parent_array = []
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
     end
+    @category_child_array = @product.category.parent.children
   end
 
   def update
