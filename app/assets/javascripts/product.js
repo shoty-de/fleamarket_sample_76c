@@ -46,7 +46,6 @@ $(document).on('turbolinks:load', function () {
 
         $('#image').attr('class', `input-area-${num}`)
       });
-      console.log(file_field.files.length + 10);
     });
     // チェックボックスを非表示にするcss
     $('.hidden-destroy').hide();
@@ -59,11 +58,8 @@ $(document).on('turbolinks:load', function () {
       const hiddenCheck = $(`input[data-index="${target_index}"].hidden-destroy`);
       if (hiddenCheck) {
         hiddenCheck.prop('checked', true)
-        // console.log(target_index);
       };
       if (hiddenCheck.prop('checked', true)) {
-        // console.log("チェック");
-        // console.log(hiddenCheck);
       };
 
       if (file_field.files.length == 1) {
@@ -81,7 +77,6 @@ $(document).on('turbolinks:load', function () {
       var num = $('.item-image').length
       $('#image').show()
       $('#image').attr('class', `input-area-${num}`)
-      console.log(file_field.files.length + 100);
     })
   });
 });
