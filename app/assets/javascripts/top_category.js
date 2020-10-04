@@ -29,6 +29,7 @@ $(function(){
       dataType: "json"
     })
     .done(function(child){
+      $(".a").remove();
       child.forEach(function(one_child){
       buildHTML(one_child)
       })
@@ -38,9 +39,9 @@ $(function(){
     })
    });
 
-  //  親カテゴリからマウスが離れた時のイベント発火↓
-   $(document).on("mouseleave", ".headerLow__search-style__category", function(){
-     $(".a").remove();
-   })
+  //  親カテゴリと小カテゴリをまとめるdiv要素からマウスが離れた時のイベント発火であり、Appendした小カテゴリを消す。↓
+   $(document).on("mouseleave", ".test", function(){
+    $(".a").remove();
+  })
    
 });
