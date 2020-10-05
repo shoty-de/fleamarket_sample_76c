@@ -484,3 +484,11 @@
     width: 60%;
   }
 }
+
+.whitebox {
+  background-color:white;
+  height: 500px;
+  width: 200px;
+  position: relative;
+  z-index: 90;
+}
