@@ -21,7 +21,7 @@ class PurchaseController < ApplicationController
     )
     @product.buyer_id = current_user.id
     @product.save
-    redirect_to action: 'done' 
+    redirect_to done_purchase_index_path(@product.id)
   end
 
   def set_card
