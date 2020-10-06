@@ -63,9 +63,9 @@
         position: relative;
         .headerLow__search-style {
           .parentcategory {
-            .test {
+            .parents_children_box {
               display: flex;
-              .testclass {
+              .parents_class {
                 display: none;
                 position: relative;
                 z-index: 100;
@@ -83,8 +83,8 @@
                     text-decoration: none;
                   }
               }
-              .testclass2 {
-                .a {
+              .children_class {
+                .Block {
                   background-color: white;
                   font-weight: bolder;
                   position: relative;

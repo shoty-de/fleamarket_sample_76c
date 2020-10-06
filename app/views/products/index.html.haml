@@ -17,12 +17,12 @@
         .headerLow__search-style
           .parentcategory 
             カテゴリ
-            .test
-              .testclass
+            .parents_children_box
+              .parents_class
                 - @category_parent.each do |parent|
                   .headerLow__search-style__category#parenttest
                     = link_to parent.name , "#" , class: 'block' , id:parent.id
-              .testclass2
+              .children_class
         .headerLow__search-right
           = link_to 'ブランド', {}, class: 'linkStyleBrand'
       .headerLow__user
