@@ -20,19 +20,20 @@ $(function(){
                                   <a href= "#", class= "blocks" > ${one_child.name}</a>
                                </div>
                               `
-    // 返り値をしっかり定義させる 理由は？
+    // この関数はChildrenHTML関数の呼び出し元に戻るので、何を返すかしっかりと明示する必要性がある
       return children_category
     }
 
     // 親カテゴリに一回に対して一回のみ発火(子カテゴリは元々OptionHTMLにて作成してあるのを一緒に持ってくる)
     function MakeChildrenBox(insertHTML){ 
-      var html = ""; // これ何？
       html =  `
               <div class="whitebox">
                 ${insertHTML}
               </div>
               `
       $(".children_class").append(html);
+
+    // この関数ではappendすることが目的なので,ここで処理が終了する。(return文が必要ない理由)
     }
 
    //  親カテゴリに乗った時の実際のイベント発火
@@ -46,9 +47,9 @@ $(function(){
     })
     .done(function(child){
       $(".whitebox").remove();
-      insertHTML = ""  // これ何？
+      insertHTML = ""
       child.forEach(function(one_child){
-      insertHTML = insertHTML + ChildrenHTML(one_child) // これ何？
+        insertHTML = insertHTML + ChildrenHTML(one_child)
       })
       MakeChildrenBox(insertHTML);
     })

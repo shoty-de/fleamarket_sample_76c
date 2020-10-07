@@ -20,7 +20,7 @@
             .parents_children_box
               .parents_class
                 - @category_parent.each do |parent|
-                  .headerLow__search-style__category#parenttest
+                  .headerLow__search-style__category
                     = link_to parent.name , "#" , class: 'block' , id:parent.id
               .children_class
         .headerLow__search-right
