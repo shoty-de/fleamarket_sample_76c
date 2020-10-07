@@ -3,9 +3,23 @@
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
     %title FleamarketSample76c
+    %script{src: "https://js.pay.jp/", type: "text/javascript"}
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    .header
+      = render 'layouts/header'
+
+    .main
+      .notifications
+        - flash.each do |key, value|
+          = content_tag(:div, value, class: key)
+      = yield
+
+    .footer
+      = render 'layouts/footer'
+
+    .btn
+      = render 'layouts/product_btn'

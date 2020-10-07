@@ -97,7 +97,7 @@ end
 # その他
 other_child_array = ['まとめ売り','ペット用品','食品','飲料/酒','日用品/生活雑貨/旅行','アンティーク/コレクション','文房具/事務用品','事務/店舗用品','その他']
 
-parent = Category.create(name: 'その他')
+parent = Category.create(name: 'その他の商品')
 other_child_array.each do |child|
   child = parent.children.create(name: child)
 end

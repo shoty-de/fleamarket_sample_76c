@@ -1,0 +1,12 @@
+.contents
+  .mypage-container
+    =render "side-content"
+
+    .main-content
+      .mypage-user
+        .mypage-user__name
+          = current_user.nickname
+          さんのマイページ
+        .mypage-user__number
+          出品数
+          = current_user.sell_products.length

@@ -1,2 +1,9 @@
-%h2 登録完了後のページ
-= link_to "トップへ戻る", root_path
+//登録完了画面
+
+.main
+  .main__container
+    .main__container__title
+      登録が完了しました。
+    .main__container__form
+      .btn-default
+        = link_to "トップページへ戻る", root_path, class: 'btn-next'

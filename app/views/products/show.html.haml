@@ -1,0 +1,118 @@
+.showMain
+  .content
+    .topContent
+      .itemBox
+        .itemBox__name
+          = @product.title
+        .itemBox__body
+          .itemBox__body-mainImg
+            = image_tag @product.product_images.first.image.to_s, height: '346px'
+          .itemBox__body-subImg
+            - @product.product_images[1..-1].each do |i|
+              = image_tag i.image.to_s, height: '87px'
+        .itemBox__price
+          .itemBox__price-main
+            = "¥#{@product.price}"
+          .itemBox__price-detail
+            (税込み)送料込み
+        .itemDetail
+          = @product.text
+        .table
+          %table
+            %tbody
+              %tr
+                %th
+                  出品者
+                %td
+                  = @product.seller.nickname
+              %tr
+                %th
+                  カテゴリー
+                %td
+                  = @category.name
+                  %br
+                  = @product.category.name
+              %tr
+                %th
+                  ブランド
+                %td
+                  = @product.brand
+              %tr
+                %th
+                  商品の状態
+                %td
+                  = @product.condition.condition
+              %tr
+                %th
+                  配送料の負担
+                %td
+                  = @product.shipping_charge.charge
+              %tr
+                %th
+                  発送元の地域
+                %td
+                  = @product.prefecture.name
+              %tr
+                %th
+                  発送日の目安
+                %td
+                  = @product.deliver_leadtime.leadtime
+        .optionalArea
+          = link_to "#", class: "optionalBtn likeBtn" do
+            %i.fa.fa-star
+            お気に入り
+          .optional
+            = link_to "#", class: "optionalBtn" do
+              %i.fa.fa-flag
+              不適切な商品の通報
+      .commentBox
+        .commentContents
+        = form_with(model: @comment, local: true) do |f|
+          .new_comment
+            = f.text_area :text, class: "commentArea"
+            .noticeMsg
+              相手のことを考え丁寧なコメントを心がけましょう。
+              %br
+              不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            %button{type: "submit", class: "commentBtn"}
+              %i.fa.fa-comment
+              コメントする
+
+    .links
+      = link_to "#{@product.id - 1}", class: "btnToLeft" do
+        %i.fa.fa-angle-left
+        前の商品
+      = link_to "#{@product.id + 1}", class: "btnToRight" do
+        後ろの商品
+        %i.fa.fa-angle-right
+
+    .relatedItems
+      = link_to "#" do
+        = "#{@category.name}をもっと見る"
+      .productLists
+        - @products.last(3).each do |product|
+          .productList
+            = link_to "#{product.id}" do
+              .productList--img
+                = image_tag product.product_images.first.image.to_s, height: '150px'
+              .productList--body
+                .name
+                  = product.title
+                .details
+                  .price
+                    = product.price
+                    %i.fa.fa-star
+                  .tax
+                    （税込）
+
+//出品者にしか商品の情報編集・削除のリンクが踏めないようになっている
+- if user_signed_in? && current_user.id == @product.seller_id
+  .productManage
+    = link_to "商品の編集", product_path(@product.id), class: "productManage__edit"
+    %br
+    = link_to "商品の削除", product_path(@product.id), method: :delete, class: "productManage__delete"
+
+//出品者以外にしか商品購入のリンクが踏めないようになっている
+- if user_signed_in? && current_user.id != @product.seller_id
+  .productManage
+    = link_to "商品を購入する",  purchase_index_path(@product.id), class: "productManage__purchase"

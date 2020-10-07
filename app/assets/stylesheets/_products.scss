@@ -130,7 +130,7 @@
   }
 }
 
-.main {
+.top-main {
   background: #f8f8f8;
   position: relative;
   z-index: 50;
@@ -140,7 +140,7 @@
     padding: 0 60px;
     display: flex;
     align-items: center;
-    background-image: url("material/pict/bg-mainVisual-pict_pc.jpg");
+    background-image: image-url("material/pict/bg-mainVisual-pict_pc.jpg");
     background-size: cover;
     background-position: top center;
     &__content {
@@ -275,7 +275,7 @@
     }
   }
   .thirdVisual {
-    background-image: url(material/pict/bg-topMiddleDl-pict.jpg);
+    background-image: image-url('material/pict/bg-topMiddleDl-pict.jpg');
     background-position: bottom right;
     height: 400px;
     background-size: cover;
@@ -383,19 +383,39 @@
         color: #3CCACE;
       }
       &__lists {
-        width: 780px;
+        width: 1100px;
         margin: 26px auto;
         display: flex;
-        justify-content: space-around;
+        justify-content: right;
+        overflow-x: scroll; 
         .list {
-          width: 220px;
           display: inline-block;
+          height: 245px;
+          width: 220px;
+          background-color: #fff;
+          text-decoration: none;
+          &__infomation {
+            padding: 16px;
+            color: #333;
+            .title {
+              line-height: 1.5;
+            }
+            .price {
+              font-size: 16px;
+              .tax {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+        .list:hover {
+          opacity: 0.5;
         }
       }
     }
   }
   .lastVisual{
-    background-image: url(material/pict/bg-appBanner-pict.jpg);
+    background-image: image-url('material/pict/bg-appBanner-pict.jpg');
     padding: 100px 40px;
     position: relative;
     background-size: cover;

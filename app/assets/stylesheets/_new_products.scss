@@ -1,0 +1,223 @@
+.error {
+  color:#262626; 
+  background:#FFEBE8;
+  text-align: center;
+  border:2px solid #990000;
+  padding:12px; font-weight:850;
+}
+
+
+.contents {
+  height: 100%;
+  width: 100%;
+  background-color: #eeeeee;
+  .header {
+    height: 130px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .input-area {
+    height: calc(100% - 240px);
+    width: 700px;
+    margin: 0 auto;
+    background-color: white;
+    .field {
+      padding: 30px;
+      border-bottom: solid 2px #eeeeee;
+      .field-category {
+        margin-bottom: 30px;
+        color: gray;
+        font-weight: bold;
+      }
+      .field-label {
+        margin-bottom: 20px;
+        &__name {
+          font-weight: bold;
+          font-size: 16px;
+        }
+        &__notice {
+          color: white;
+          padding: 2px 4px;
+          font-size: 12px;
+          font-weight: bold;
+          background-color: red;
+          border-radius: 2px;
+        }
+        #optional {
+          background-color: gray;
+
+        }
+      }
+      .image-box {
+        .image-box__container {
+          .image-list {
+            display: flex;
+            .input-area-0 {
+              width: 100%;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .input-area-1{
+              width: 491px;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .input-area-2{
+              width: 363px;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .input-area-3{
+              width: 234px;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .input-area-4{
+              width: 106px;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .input-area-5{
+              width: 100%;
+              place-content: center;
+              -webkit-box-align: center;
+              align-items: center;
+              background-color: rgb(245, 245, 245);
+              border: 1px dashed rgb(204, 204, 204);
+              cursor: pointer;
+              display: flex;
+              height: 150px;
+              flex-wrap: wrap;
+              -webkit-box-pack: center;
+              position: relative;
+              transition: all 0.5s ease-out 0s;
+            }
+            .item-image {
+              margin-right: 10px;
+              padding-top: 20px;
+              border: 1px dashed rgb(204, 204, 204);
+              &__content {
+                margin-bottom: 10px;
+              }
+              &__operetion {
+                &--delete {
+                  cursor: pointer;
+                  color: skyblue;
+                }
+              }
+            }
+          }
+        }
+      }
+      .field-input {
+        margin-bottom: 30px;
+        &__text-field {
+          height: 48px;
+          width: 608px;
+          padding: 0 16px 0 16px;
+          border: 1px solid #cccccc;
+        }
+        &__text-area {
+          height: 120px;
+          width: 608px;
+          padding: 16px;
+          border: 1px solid #cccccc;
+        }
+        &__select {
+          height: 48px;
+          width: 640px;
+          padding: 0 56px 0 16px;
+          border: 1px solid #cccccc;
+        }
+        &__number-field {
+          height: 48px;
+          width: 620px;
+          border: 1px solid #cccccc;
+          text-align: right;
+        }
+        #category {
+          margin-top: 10px;
+        }
+      }
+    }
+    .action {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &__btn {
+        height: 48px;
+        width: 300px;
+        background-color: #ea352d;
+        font-weight: bold;
+        color: white;
+        border-radius: 4px;
+        border: 1px solid transparent;
+      }
+    }
+  }
+
+  .footer {
+    height: 120px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+

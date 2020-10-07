@@ -1,0 +1,33 @@
+.contents
+  .mypage-container
+    =render "users/side-content"
+
+    .main-content
+      .mypage-user
+        .mypage-user__name
+          = current_user.nickname
+          さんのクレジットカード情報
+      .mypage-informations
+        - if @card.present?
+          .information
+            カード番号
+            %br/
+            %input.data{value: "**** **** **** #{@default_card_information.last4}", readonly: "readonly"}
+          .information
+            有効期限
+            %br/
+            %input.data{value: "#{@default_card_information.exp_month.to_s}/#{@default_card_information.exp_year.to_s.slice(2,3)}", readonly: "readonly"}
+          = link_to new_creditcard_path do
+            .btn-default
+              .btn-next
+                新しいカードを登録する
+          = form_tag(delete_creditcards_path, method: :post, id: 'charge-form', name: "inputForm", class: "btn-default") do
+            %input{ type: "hidden", name: "card_id", value: ""}
+            %button.btn-next 削除する
+        - else
+          .information
+            カードは登録されていません。
+          = link_to new_creditcard_path do
+            .btn-default
+              .btn-next
+                カードを登録する
