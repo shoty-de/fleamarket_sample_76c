@@ -24,8 +24,9 @@ class ProductsController < ApplicationController
     @category_children = Category.find_by(name: "#{params[:parent_name]}").children
   end
 
+  # DBから親カテゴリーのみ抽出。==> _header.html.hamlへ
   def parents
-    @category_parent = Category.where(ancestry: nil)  # データベースから、親カテゴリーのみ抽出し、配列化
+    @category_parent = Category.where(ancestry: nil)
   end
 
   def childs
