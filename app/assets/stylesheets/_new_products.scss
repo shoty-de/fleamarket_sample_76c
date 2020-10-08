@@ -6,11 +6,11 @@
   padding:12px; font-weight:850;
 }
 
-
 .contents {
   height: 100%;
   width: 100%;
-  background-color: #eeeeee;
+  background-color: #f8f8f8;
+  padding-bottom: 70px;
   .header {
     height: 130px;
     width: 100vw;
@@ -26,7 +26,7 @@
     background-color: white;
     .field {
       padding: 30px;
-      border-bottom: solid 2px #eeeeee;
+      border-bottom: solid 2px #f8f8f8;
       .field-category {
         margin-bottom: 30px;
         color: gray;
