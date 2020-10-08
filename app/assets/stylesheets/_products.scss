@@ -13,6 +13,7 @@
 
 .header {
   padding: 0 60px;
+  
   .headerContents {
     max-width: 1040px;
     width: 100%;
@@ -66,23 +67,67 @@
       font-size: 14px;
       &__search {
         display: flex;
-        align-items: center;
+        padding-top: 15px;
+        position: relative;
         .headerLow__search-style {
-          padding-right: 20px;
-          .linkStyle {
-            text-decoration: none;
-            color: black;
+          .parentcategory {
+            .parents_children_box {
+              display: flex;
+              .parents_class {
+                display: none;
+                position: relative;
+                z-index: 100;
+                .headerLow__search-style__category {
+                  background-color: white;
+                  padding: 10px;
+                  width: 200px;
+                  }
+                  .headerLow__search-style__category:hover {
+                    background-color: #3CCACE;
+                  }
+                  .block {
+                    text-decoration: none;
+                    color: black;
+                  }
+                  .linkStyle {
+                    text-decoration: none;
+                  }
+              }
+              .children_class {
+                .Block {
+                  background-color: white;
+                  position: relative;
+                  z-index: 100;
+                  padding: 10px;
+                .blocks {
+                  text-decoration: none;
+                  color: black;
+                }
+                }
+                .Block:hover {
+                  background-color: #3CCACE;
+                }
+              }
+            }
           }
-        }
-        .headerLow__search-style.left {
+          }
+        .headerLow__search-right {
           padding-left: 32px;
+          position: absolute;
+          left: 50px;
+          width: 150px;
+          
+        }
+        .linkStyleBrand {
+          text-decoration: none;
+          color: black;
         }
       }
       &__user {
         display: flex;
-        align-items: center;
         .herderLow__user-controll {
           padding-left: 16px;
+          line-height: 50px;
           .linkStyle {
             text-decoration: none;
             color: black;
@@ -94,7 +139,9 @@
 }
 
 .top-main {
-  background-color: #f8f8f8;
+  background: #f8f8f8;
+  position: relative;
+  z-index: 50;
   .firstVisual {
     height: 560px;
     width: 100%;
@@ -468,4 +515,12 @@
   &__icon {
     width: 60%;
   }
+}
+
+.whitebox {
+  background-color:white;
+  height: 500px;
+  width: 200px;
+  position: relative;
+  z-index: 90;
 }

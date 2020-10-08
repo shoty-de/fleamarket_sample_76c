@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
 
+  before_action :parents
+
   def index
     @products = Product.where(buyer_id: nil).includes(:product_images)
     if @products.present?
@@ -20,6 +22,15 @@ class ProductsController < ApplicationController
 
   def get_children_category
     @category_children = Category.find_by(name: "#{params[:parent_name]}").children
+  end
+
+  # DBから親カテゴリーのみ抽出。==> _header.html.hamlへ
+  def parents
+    @category_parent = Category.where(ancestry: nil)
+  end
+
+  def childs
+    @category_children = Category.where(ancestry: "#{params[:id]}")
   end
 
   def create
@@ -50,4 +61,5 @@ class ProductsController < ApplicationController
   def need_login
     redirect_to root_path unless user_signed_in?
   end
+
 end
