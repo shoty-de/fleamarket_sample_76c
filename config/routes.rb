@@ -11,11 +11,14 @@ Rails.application.routes.draw do
     post 'products/new', to: 'products#create'
     get 'products/create', to: 'products#show'
   end
+
   root 'products#index'
 
   resources :products, only: [:index, :new, :create, :show, :edit, :destroy] do
     collection do
       get 'get_children_category', defaults: { format: 'json' }
+      # get 'parents', defaults: { format: 'json'} これは必要？
+      get 'childs', defaults: { format: 'json' }
     end
   end
 
@@ -33,7 +36,8 @@ Rails.application.routes.draw do
       get 'done', to: 'purchase#done'
     end
   end
-  resources :users, only: :show do
+
+  resources :users, only:  [:show] do
     collection do
       get "sell_products"
       get "buy_products"
@@ -42,4 +46,5 @@ Rails.application.routes.draw do
       get "show_userdata"
     end
   end
+
 end

@@ -1,7 +1,7 @@
 .headerContents
   .headerHeigh
     .headerHeigh__icon
-      = link_to root_path do
+      = link_to do
         = image_tag 'material/logo/logo.png', class: 'icon'
     .headerHeigh__search
       = form_with url: products_path, method: :get, local: true do |f|
@@ -13,15 +13,22 @@
   .headerLow
     .headerLow__search
       .headerLow__search-style
-        = link_to 'カテゴリー', {}, class: 'linkStyle'
-      .headerLow__search-style.left
-        = link_to 'ブランド', {}, class: 'linkStyle'
+        .parentcategory 
+          カテゴリ
+          .parents_children_box
+            .parents_class
+              - @category_parent.each do |parent|
+                .headerLow__search-style__category
+                  = link_to parent.name , "#" , class: 'block' , id:parent.id
+            .children_class
+      .headerLow__search-right
+        = link_to 'ブランド', {}, class: 'linkStyleBrand'
     .headerLow__user
       - if user_signed_in?
         .herderLow__user-controll
           = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'linkStyle'
         .herderLow__user-controll
-          = link_to 'マイページ', user_path(current_user), class: 'linkStyle'
+          = link_to 'マイページ', {}, class: 'linkStyle'
       - else
         .herderLow__user-controll
           = link_to 'ログイン', new_user_session_path, class: 'linkStyle'
