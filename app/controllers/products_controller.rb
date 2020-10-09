@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :ensure_correct_user,{only: [:edit,:update,:destroy]}
   before_action :set_product, only: [:show, :edit]
+  before_action :category_parent_array, only: [:new, :edit]
 
   def index
     @products = Product.where(buyer_id: nil).includes(:product_images)
@@ -13,10 +14,6 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.product_images.new
-    @category_parent_array = ["選択してください"]
-    Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << parent.name
-    end
     @products = Product.includes(:product_images).order('created_at DESC')
   end
 
@@ -39,10 +36,6 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @category_parent_array = []
-    Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << parent.name
-    end
     @category_child_array = @product.category.parent.children
   end
 
@@ -50,6 +43,7 @@ class ProductsController < ApplicationController
     if @product.update(product_params)
       redirect_to product_path(@product.id)
     else
+      flash[:error] = '必須項目を全て入力してください'
       render :edit
     end
   end
@@ -59,7 +53,8 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:title, :text, :condition_id, :brand, :shipping_charge_id, :deliver_leadtime_id, :price, :seller_id, :buyer_id, :category_id, :prefecture_id, product_images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
+    params.require(:product).permit(:title, :text, :condition_id, :brand, :shipping_charge_id, :deliver_leadtime_id, :price, :seller_id, :buyer_id, :category_id, :prefecture_id,
+                                    product_images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
   end
 
   def set_product
@@ -75,6 +70,13 @@ class ProductsController < ApplicationController
     if current_user.id != @product.seller_id
     flash[:notice] = "権限がありません"
     redirect_to product_path(@product.id)
+    end
+  end
+
+  def category_parent_array
+    @category_parent_array = ["選択してください"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
     end
   end
 
