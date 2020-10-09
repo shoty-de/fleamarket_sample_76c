@@ -1,7 +1,5 @@
 class ProductsController < ApplicationController
 
-  before_action :parents
-
   def index
     @products = Product.where(buyer_id: nil).includes(:product_images)
     if @products.present?
@@ -25,13 +23,13 @@ class ProductsController < ApplicationController
   end
 
   # DBから親カテゴリーのみ抽出。==> _header.html.hamlへ
-  def parents
-    @category_parent = Category.where(ancestry: nil)
-  end
+  # def parents
+  #   @category_parent = Category.where(ancestry: nil)
+  # end
 
-  def childs
-    @category_children = Category.where(ancestry: "#{params[:id]}")
-  end
+  # def childs
+  #   @category_children = Category.where(ancestry: "#{params[:id]}")
+  # end
 
   def create
     @product = Product.new(product_params)
