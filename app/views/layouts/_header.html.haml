@@ -1,7 +1,7 @@
 .headerContents
   .headerHeigh
     .headerHeigh__icon
-      = link_to do
+      = link_to root_path do
         = image_tag 'material/logo/logo.png', class: 'icon'
     .headerHeigh__search
       = form_with url: products_path, method: :get, local: true do |f|
@@ -13,7 +13,7 @@
   .headerLow
     .headerLow__search
       .headerLow__search-style
-        .parentcategory 
+        .parentcategory
           カテゴリ
           .parents_children_box
             .parents_class
@@ -28,7 +28,7 @@
         .herderLow__user-controll
           = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'linkStyle'
         .herderLow__user-controll
-          = link_to 'マイページ', {}, class: 'linkStyle'
+          = link_to 'マイページ', user_path(current_user), class: 'linkStyle'
       - else
         .herderLow__user-controll
           = link_to 'ログイン', new_user_session_path, class: 'linkStyle'
