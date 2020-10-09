@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit]
   before_action :category_parent_array, only: [:new, :edit]
 
+  before_action :parents
+
   def index
     @products = Product.where(buyer_id: nil).includes(:product_images)
     if @products.present?
@@ -21,12 +23,20 @@ class ProductsController < ApplicationController
     @category_children = Category.find_by(name: "#{params[:parent_name]}").children
   end
 
+  # DBから親カテゴリーのみ抽出。==> _header.html.hamlへ
+  def parents
+    @category_parent = Category.where(ancestry: nil)
+  end
+
+  def childs
+    @category_children = Category.where(ancestry: "#{params[:id]}")
+  end
+
   def create
     @product = Product.new(product_params)
-    if @product.save
-    else
+    unless @product.save
       flash[:error] = '必須項目を全て入力してください'
-      redirect_to new_product_path
+      redirect_to action: "new"
     end
   end
 
