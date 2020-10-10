@@ -94,7 +94,7 @@
           .productList
             = link_to "#{product.id}" do
               .productList--img
-                = image_tag product.product_images.first.image.to_s, height: '150px'
+                = image_tag product.product_images.first.image.to_s, height: '150px', width: "100%"
               .productList--body
                 .name
                   = product.title

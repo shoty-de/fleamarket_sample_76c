@@ -1,7 +1,8 @@
 //削除完了画面
-
-.contents.row
-  .success
-    %h3
-      削除しました。
-    = link_to 'トップページへ戻る', root_path, method: :get
+.main
+  .main__container
+    .main__container__title
+      削除しました
+    .main__container__form
+      .btn-default
+        = link_to "トップページへ戻る", root_path, class: 'btn-next'
