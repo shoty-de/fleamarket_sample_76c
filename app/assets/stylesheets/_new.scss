@@ -1,9 +1,16 @@
 //新規登録画面
+#error_explanation {
+  color:#262626; 
+  background:#FFEBE8;
+  text-align: center;
+  border:2px solid #990000;
+  padding:12px; font-weight:850;
+}
 
 .main {
-  margin-top: 0 auto;
-  background-color: whitesmoke;
+  background-color: #f8f8f8;
   width: 100vw;
+  padding-bottom: 50px;
   &__container {
     background-color: white;
     width: 380px;
@@ -11,10 +18,10 @@
     &__title {
       font-size: 25px;
       text-align: center;
-      border-bottom: 1px whitesmoke solid;
-      padding: 15px;
+      border-bottom: 1px#f8f8f8 solid;
+      padding: 25px;
       font-weight: bolder;
-      background-color: whitesmoke;
+      background-color:#f8f8f8;
     }
     &__form {
       padding: 50px;

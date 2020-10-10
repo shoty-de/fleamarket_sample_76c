@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     unless @product.save
-      flash[:error] = '必須項目を全て入力してください'
+      flash[:error] = "必須項目を全て入力してください"
       redirect_to action: "new"
     end
   end

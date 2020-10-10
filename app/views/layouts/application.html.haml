@@ -12,14 +12,9 @@
     .header
       = render 'layouts/header'
 
-    .main
-      .notifications
-        - flash.each do |key, value|
-          = content_tag(:div, value, class: key)
+    .form
       = yield
 
     .footer
       = render 'layouts/footer'
 
-    .btn
-      = render 'layouts/product_btn'

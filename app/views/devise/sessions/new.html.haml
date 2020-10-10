@@ -1,8 +1,9 @@
 //ログイン
-
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
   .main
     .main__container
+      .main__container__title
+        ログイン画面
       .main__container__form
         .input-default
           = f.label :メールアドレス
