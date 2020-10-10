@@ -49,10 +49,11 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
+      flash[:notice] = "商品情報を編集しました"
       redirect_to product_path(@product.id)
     else
       flash[:error] = '必須項目を全て入力してください'
-      render :edit
+      redirect_to action: "edit"
     end
   end
 
