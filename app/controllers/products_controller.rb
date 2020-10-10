@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  before_action :ensure_correct_user,{only: [:edit,:update,:destroy]}
+  before_action :set_product, only: [:show, :edit]
+  before_action :category_parent_array, only: [:new, :edit]
 
   def index
     @products = Product.where(buyer_id: nil).includes(:product_images)
@@ -11,10 +14,6 @@ class ProductsController < ApplicationController
   def new
     @product = Product.new
     @product.product_images.new
-    @category_parent_array = ["選択してください"]
-    Category.where(ancestry: nil).each do |parent|
-      @category_parent_array << parent.name
-    end
     @products = Product.includes(:product_images).order('created_at DESC')
   end
 
@@ -40,12 +39,21 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
     @category = Category.find(@product.category.ancestry)
     @products = Category.where(ancestry: @category.id).map { |c| c.products }.flatten!.shuffle
   end
 
   def edit
+    @category_child_array = @product.category.parent.children
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to product_path(@product.id)
+    else
+      flash[:error] = '必須項目を全て入力してください'
+      render :edit
+    end
   end
 
   def destroy
@@ -60,11 +68,31 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:title, :text, :condition_id, :brand, :shipping_charge_id, :deliver_leadtime_id, :price, :seller_id, :buyer_id, :category_id, :prefecture_id, product_images_attributes: [:image]).merge(seller_id: current_user.id)
+    params.require(:product).permit(:title, :text, :condition_id, :brand, :shipping_charge_id, :deliver_leadtime_id, :price, :seller_id, :buyer_id, :category_id, :prefecture_id,
+                                    product_images_attributes: [:image, :_destroy, :id]).merge(seller_id: current_user.id)
+  end
+
+  def set_product
+    @product = Product.find(params[:id])
   end
 
   def need_login
     redirect_to root_path unless user_signed_in?
+  end
+
+  def ensure_correct_user
+    @product = Product.find(params[:id])
+    if current_user.id != @product.seller_id
+    flash[:notice] = "権限がありません"
+    redirect_to product_path(@product.id)
+    end
+  end
+
+  def category_parent_array
+    @category_parent_array = ["選択してください"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
   end
 
 end

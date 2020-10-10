@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -14,10 +14,9 @@ Rails.application.routes.draw do
 
   root 'products#index'
 
-  resources :products, only: [:index, :new, :create, :show, :edit, :destroy] do
+  resources :products do
     collection do
       get 'get_children_category', defaults: { format: 'json' }
-      # get 'parents', defaults: { format: 'json'} これは必要？
       get 'childs', defaults: { format: 'json' }
     end
   end
