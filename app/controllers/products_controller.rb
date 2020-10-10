@@ -50,7 +50,12 @@ class ProductsController < ApplicationController
 
   def destroy
     product = Product.find(params[:id])
-    product.destroy
+    if product.destroy
+      product_path(product.id)
+    else
+      flash[:error] = "商品を削除できません"
+      redirect_to action: "show"
+    end
   end
 
   private
