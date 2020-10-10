@@ -72,6 +72,43 @@
             }
           }
         }
+        .productManage {
+          padding: 24px;
+          background-color: #fff;
+          margin: 10px 0;
+          padding: 24px 40px;
+          display: flex;
+          justify-content: space-between;
+            &__edit {
+              line-height: 48px;
+              background: #3CCACE;
+              border: 1px solid #3CCACE;
+              color: #fff;
+              width: 40%;
+              font-size: 18px;
+              border-radius: 100px;
+              text-align: center;
+            }
+            &__delete {
+              line-height: 48px;
+              background-color: rgb(218, 119, 119);
+              border: 1px solid #9f2c4b;
+              width: 40%;
+              font-size: 18px;
+              border-radius: 100px;
+              text-align: center;
+            }
+            &__purchase {
+              line-height: 48px;
+              background: #e6e03d;
+              border: 1px solid #e6e03d;
+              width: 40%;
+              font-size: 18px;
+              border-radius: 100px;
+              text-align: center;
+            }
+
+        }
         .commentBox {
           padding: 24px;
           background-color: #fff;

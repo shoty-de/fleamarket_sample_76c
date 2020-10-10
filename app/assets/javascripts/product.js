@@ -1,59 +1,90 @@
 $(document).on('turbolinks:load', function () {
   $(function () {
-    var dataBox = new DataTransfer();
-    var file_field = document.querySelector('input[type=file]')
-    $('#img-file').change(function () {
-      var files = $('input[type="file"]').prop('files')[0];
-      $.each(this.files, function (i, file) {
-        var fileReader = new FileReader();
+    // file_fieldを表示する関数
+    var buildInput = (index) => {
+      var html = `<input type="file"
+                      name="product[product_images_attributes][${index}][image]" style="display:none"
+                      id="product_product_images_attributes_${index}_image" class="hidden-field">`;
+      return html;
+    }
 
-        dataBox.items.add(file)
-        file_field.files = dataBox.files
+    // プレビュー画像を表示する関数
+    var buildImage = (index, url) => {
+      var html = `<div class='item-image' data-index="${index}" id='item-image_${index}'>
+                                <div class=' item-image__content'>
+                                  <div class='item-image__content--icon'>
+                                    <img src="${url}" width="114" height="80" >
+                                  </div>
+                                </div>
+                                <div class='item-image__operetion'>
+                                  <div class='item-image__operetion--delete' id='delete_btn_${index}'>削除</div>
+                                </div>
+                              </div>`
+      return html;
+    };
 
-        var num = $('.item-image').length + 1 + i
-        fileReader.readAsDataURL(file);
-        if (num == 5) {
-          $('#image').css('display', 'none')
-        }
-        fileReader.onloadend = function () {
-          var src = fileReader.result
-          var html = `<div class='item-image' data-image="${file.name}">
-                      <div class=' item-image__content'>
-                        <div class='item-image__content--icon'>
-                          <img src=${src} width="114" height="80" >
-                        </div>
-                      </div>
-                      <div class='item-image__operetion'>
-                        <div class='item-image__operetion--delete'>削除</div>
-                      </div>
-                    </div>`
+    // 画像にindexを割り振るための配列を用意
+    var fileIndex = [0, 1, 2, 3, 4];
 
-          $('#image').before(html);
-        };
+    // 保存済みの画像の表示にて既に使われているindexを配列から除外する
+    lastIndex = $('.item-image:last').data('index');
+    fileIndex.splice(0, lastIndex + 1);
 
-        $('#image').attr('class', `input-area-${num}`)
-      });
+    // file_fieldとチェックボックスを非表示にするcss
+    $('.hidden-field').hide();
+    $('.hidden-destroy').hide();
+
+    // 画像を挿入する処理
+    $('#image').on('change', '.hidden-field', function (e) {
+      // ファイルのブラウザ上でのURLを取得する
+      var file = e.target.files[0];
+      var blobUrl = window.URL.createObjectURL(file);
+
+      // 画像のプレビューを表示する
+      $('#image').before(buildImage(fileIndex[0], blobUrl));
+      // fileIndexの先頭の数字を使って新しくinputを作る
+      $('#image').append(buildInput(fileIndex[1]));
+
+      fileIndex.shift();
+      // 末尾の数に1足した数を追加する
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+
+      // 入力ボタンが対象としているフォームのidを切り替える
+      $('#image').attr('for', `product_product_images_attributes_${fileIndex[0]}_image`)
+
+      // 画像が5枚になったら入力ボタンを非表示にする
+      if ($('.item-image').length == 5) {
+        $('#image').hide();
+      }
     });
 
+    // 画像を削除する処理
     $(document).on("click", '.item-image__operetion--delete', function () {
+      // 選択した画像を取得する
       var target_image = $(this).parent().parent()
-      var target_name = $(target_image).data('image')
-      if (file_field.files.length == 1) {
-        $('input[type=file]').val(null)
-        dataBox.clearData();
-        console.log(dataBox)
-      } else {
-        $.each(file_field.files, function (i, input) {
-          if (input.name == target_name) {
-            dataBox.items.remove(i)
-          }
-        })
-        file_field.files = dataBox.files
-      }
+      // 選択した画像のindexを取得する
+      var target_index = $(target_image).data('index')
+
+      // 選択した画像が登録済みの場合、対応するチェックボックスにチェックする
+      var hiddenCheck = $(`input[data-index="${target_index}"].hidden-destroy`);
+      if (hiddenCheck) {
+        hiddenCheck.prop('checked', true)
+      };
+
+      // 選択した画像の表示を消去する
       target_image.remove()
-      var num = $('.item-image').length
-      $('#image').show()
-      $('#image').attr('class', `input-area-${num}`)
-    })
+      // 選択した画像と対応するfile_fieldを消去する
+      $(`#product_product_images_attributes_${target_index}_image`).remove()
+
+      // 画像が4枚になったら入力ボタンを再表示する
+      if ($('.item-image').length <= 4) {
+        $('#image').show();
+      }
+
+      // 入力欄がゼロ個にならない様にする（画像表示が全て消されたら入力欄を復活させる）
+      if ($('.item-image').length == 0) {
+        $('#image').append(buildInput(fileIndex[0]));
+      }
+    });
   });
 });

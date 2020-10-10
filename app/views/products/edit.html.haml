@@ -1,8 +1,7 @@
-= render 'layouts/flash'
 .contents
   .header
     .header__logo
-      = link_to root_path do
+      = link_to do
         = image_tag 'material/logo/logo.png', height: '49', width: '185'
   .input-area
     = form_with model: @product, local: true do |f|
@@ -13,9 +12,21 @@
         .image-box
           .image-box__container
             .image-list
-              %label{for: "product_product_images_attributes_0_image", class: "input-area", id: "image"}
+              -# 登録済みの画像を表示するための記述
+              - @product.product_images.each_with_index do |product_image, index|
+                .item-image{"data-index" => "#{index}", id: "item-image_#{index}"}
+                  .item-image__content
+                    .item-image__content--icon
+                      %img{src: "#{product_image.image}",height: "80",  width: "114"}
+                  .item-image__operetion
+                    .item-image__operetion--delete 削除
+              = f.fields_for :product_images do |i|
+                = i.check_box :_destroy, class: "hidden-destroy", data:{ index: "#{i.index}" }
+
+              -# 追加したい画像を選択・表示するための記述
+              %label{for: "product_product_images_attributes_#{@product.product_images.length}_image", class: "input-area", id: "image"}
                 = image_tag 'material/icon/icon_camera.png', height: '24', width: '24'
-                = f.file_field :image, type: 'file', name: "product[product_images_attributes][1][image]", value:"", class: "hidden-field", id:"product_product_images_attributes_0_image"
+                = f.file_field :image, type: 'file', name: "product[product_images_attributes][#{@product.product_images.length}][image]", value:"",class: "hidden-field", id:"product_product_images_attributes_#{@product.product_images.length}_image"
 
       .field
         .field-label
@@ -35,7 +46,9 @@
           = f.label 'カテゴリー', class: 'field-label__name'
           %span.field-label__notice 必須
         .field-input#parant
-          = f.select :category_id, @category_parent_array, {}, class: 'field-input__select'
+          = f.select :category_id, @category_parent_array, {selected:@product.category.parent.name}, class: 'field-input__select'
+          .field-input#category
+            = f.collection_select :category_id, @category_child_array, :id, :name, {include_blank: "---", selected: @product.category.id}, required: true, class: 'field-input__select'
         .field-label
           = f.label 'ブランド', class: 'field-label__name'
           %span#optional.field-label__notice 任意
@@ -74,4 +87,8 @@
           %span ¥
           = f.number_field :price, placeholder: '0', class: 'field-input__number-field'
       .action
-        = f.submit "出品する", class: 'action__btn'
+        = f.submit "変更する", class: 'action__btn'
+  .footer
+    .footer__image
+      = link_to do
+        = image_tag 'material/logo/logo-white.png', height: '49', width: '185'

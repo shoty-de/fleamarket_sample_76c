@@ -7,7 +7,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(sign_up_params)
     unless @user.valid?
-      flash.now[:alert] = @user.errors.full_messages
       render :new and return
     end
     session["devise.regist_data"] = {user: @user.attributes}
@@ -21,7 +20,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @profile = Profile.new(profile_params)
 
     unless @profile.valid?
-      flash.now[:alert] = @profile.errors.full_messages
       render :new_profile and return
     end
     session["devise.regist_data"].merge!(profile: @user.build_profile(@profile.attributes).attributes)
@@ -34,7 +32,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @profile = Profile.new(session["devise.regist_data"]["profile"])
     @address = Address.new(address_params)
     unless @address.valid?
-      flash.now[:alert] = @address.errors.full_messages
       render :new_address and return
     end
 

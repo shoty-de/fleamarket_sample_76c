@@ -11,7 +11,7 @@
       .productLists-user
         - @products.each do |product|
           .productList
-            = link_to "#{product.id}" do
+            = link_to product_path(product.id) do
               .productList--img
                 = image_tag product.product_images.first.image.to_s, height: '150px'
               .productList--body
