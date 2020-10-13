@@ -4,12 +4,16 @@ class PurchaseController < ApplicationController
   before_action :set_product
 
   def index
-    if @card.present?
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      customer = Payjp::Customer.retrieve(@card.customer_id)
-      @default_card_information = customer.cards.retrieve(@card.card_id)
+    if @product.seller_id = current_user.id
+      redirect_to product_path(@product.id)
+    else
+      if @card.present?
+        Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+        customer = Payjp::Customer.retrieve(@card.customer_id)
+        @default_card_information = customer.cards.retrieve(@card.card_id)
+      end
+      @address = Address.find(current_user.id)
     end
-    @address = Address.find(current_user.id)
   end
 
   def pay
