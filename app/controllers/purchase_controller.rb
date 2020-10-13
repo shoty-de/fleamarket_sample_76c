@@ -4,7 +4,7 @@ class PurchaseController < ApplicationController
   before_action :set_product
 
   def index
-    if @product.seller_id = current_user.id
+    if @product.seller_id == current_user.id || @product.buyer_id.present?
       redirect_to product_path(@product.id)
     else
       if @card.present?
