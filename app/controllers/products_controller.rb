@@ -59,7 +59,8 @@ class ProductsController < ApplicationController
 
   def destroy
     product = Product.find(params[:id])
-    if product.destroy
+    image = ProductImage.find_by(product_id: product.id)
+    if product.destroy && image.destroy
       product_path(product.id)
     else
       flash[:error] = "商品を削除できません"
