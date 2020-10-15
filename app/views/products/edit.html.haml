@@ -1,3 +1,4 @@
+= render 'layouts/flash'
 .contents
   .header
     .header__logo
@@ -88,7 +89,3 @@
           = f.number_field :price, placeholder: '0', class: 'field-input__number-field'
       .action
         = f.submit "変更する", class: 'action__btn'
-  .footer
-    .footer__image
-      = link_to do
-        = image_tag 'material/logo/logo-white.png', height: '49', width: '185'

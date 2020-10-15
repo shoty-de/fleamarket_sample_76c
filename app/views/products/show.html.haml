@@ -1,4 +1,7 @@
 = render 'layouts/flash'
+- if @product.buyer_id.present?
+  .error
+    売却済みの商品です
 .showMain
   .content
     .topContent
@@ -68,26 +71,26 @@
               不適切な商品の通報
       .productManage
         //出品者にしか商品の情報編集・削除のリンクが踏めないようになっている
-        - if user_signed_in? && current_user.id == @product.seller_id
+        - if user_signed_in? && @product.buyer_id.blank? && current_user.id == @product.seller_id
           = link_to "商品情報を編集する", edit_product_path(@product.id), class: "productManage__edit"
           %br
           = link_to "この商品を削除する", product_path(@product.id), method: :delete, class: "productManage__delete"
         //出品者以外にしか商品購入のリンクが踏めないようになっている
-        - if user_signed_in? && current_user.id != @product.seller_id
+        - if user_signed_in? && @product.buyer_id.blank? && current_user.id != @product.seller_id
           = link_to "この商品を購入する",  purchase_index_path(@product.id), class: "productManage__purchase"
-
-      .commentBox
-        .commentContents
-        = form_with(model: @comment, local: true) do |f|
-          .new_comment
-            = f.text_area :text, class: "commentArea"
-            .noticeMsg
-              相手のことを考え丁寧なコメントを心がけましょう。
-              %br
-              不快な言葉遣いなどは利用制限や退会処分となることがあります。
-            %button{type: "submit", class: "commentBtn"}
-              %i.fa.fa-comment
-              コメントする
+      - if user_signed_in?
+        .commentBox
+          .commentContents
+          = form_with(model: @comment, local: true) do |f|
+            .new_comment
+              = f.text_area :text, class: "commentArea"
+              .noticeMsg
+                相手のことを考え丁寧なコメントを心がけましょう。
+                %br
+                不快な言葉遣いなどは利用制限や退会処分となることがあります。
+              %button{type: "submit", class: "commentBtn"}
+                %i.fa.fa-comment
+                コメントする
 
     .links
       = link_to "#{@product.id - 1}", class: "btnToLeft" do

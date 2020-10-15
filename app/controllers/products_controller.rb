@@ -49,16 +49,18 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
+      flash[:notice] = "商品情報を編集しました"
       redirect_to product_path(@product.id)
     else
       flash[:error] = '必須項目を全て入力してください'
-      render :edit
+      redirect_to action: "edit"
     end
   end
 
   def destroy
     product = Product.find(params[:id])
-    if product.destroy
+    image = ProductImage.find_by(product_id: product.id)
+    if product.destroy && image.destroy
       product_path(product.id)
     else
       flash[:error] = "商品を削除できません"
